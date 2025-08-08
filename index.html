@@ -13,7 +13,6 @@
             --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             --warning-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-            --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
         }
 
         [data-theme="dark"] {
@@ -37,119 +36,142 @@
         body {
             background: var(--bg-primary);
             color: var(--text-primary);
-            transition: all 0.3s ease;
+            transition: all 0.5s ease;
+            min-height: 100vh;
         }
 
         [data-theme="light"] body {
             background: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fca5a5 100%);
-            min-height: 100vh;
         }
 
         .theme-transition * {
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+            transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease !important;
         }
         
         .blur-background {
-            filter: blur(5px);
-            transition: filter 0.3s ease;
+            filter: blur(8px) brightness(0.7);
+            transition: filter 0.6s ease;
         }
         
         .login-modal {
-            backdrop-filter: blur(20px);
-            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px) saturate(150%);
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        [data-theme="light"] .login-modal {
+            background: rgba(255, 255, 255, 0.9);
         }
         
         .login-form {
-            animation: loginSlideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            color: #1e293b;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        [data-theme="dark"] .login-form {
+            background: rgba(30, 41, 59, 0.95);
+            border: 1px solid rgba(71, 85, 105, 0.8);
+            color: #f1f5f9;
+        }
+
+        .login-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
         }
 
         .login-form input {
-            background: var(--bg-card) !important;
-            border: 1px solid var(--border-color) !important;
-            color: var(--text-primary) !important;
+            background: rgba(248, 250, 252, 0.8) !important;
+            border: 1px solid rgba(226, 232, 240, 0.6) !important;
+            color: #334155 !important;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .login-form input {
+            background: rgba(51, 65, 85, 0.8) !important;
+            border: 1px solid rgba(71, 85, 105, 0.6) !important;
+            color: #e2e8f0 !important;
+        }
+
+        .login-form input:focus {
+            outline: none;
+            border-color: #3b82f6 !important;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            background: rgba(255, 255, 255, 0.95) !important;
+        }
+
+        [data-theme="dark"] .login-form input:focus {
+            background: rgba(30, 41, 59, 0.95) !important;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
         }
 
         .login-form label {
-            color: var(--text-primary) !important;
+            color: #475569 !important;
+            font-weight: 500;
         }
 
-        .login-form input::placeholder {
-            color: var(--text-secondary) !important;
-        }
-
-        .google-btn {
-            background: var(--bg-card) !important;
-            border: 1px solid var(--border-color) !important;
-            color: var(--text-primary) !important;
-        }
-
-        .login-form .google-btn span {
-            color: var(--text-primary) !important;
-        }
-
-        .separator-text {
-            background: var(--bg-secondary) !important;
-            color: var(--text-secondary) !important;
+        [data-theme="dark"] .login-form label {
+            color: #cbd5e1 !important;
         }
 
         .login-title {
-            color: var(--text-primary) !important;
+            color: #1e293b !important;
+            font-weight: 700;
+            font-size: 28px;
+        }
+
+        [data-theme="dark"] .login-title {
+            color: #f1f5f9 !important;
         }
 
         .login-subtitle {
-            color: var(--text-secondary) !important;
+            color: #64748b !important;
         }
 
-        [data-theme="light"] .login-form input {
-            color: #fbbf24 !important;
+        [data-theme="dark"] .login-subtitle {
+            color: #94a3b8 !important;
         }
 
-        [data-theme="light"] .login-form label {
-            color: #fbbf24 !important;
+        .google-btn {
+            background: rgba(255, 255, 255, 0.9) !important;
+            border: 1px solid rgba(226, 232, 240, 0.8) !important;
+            color: #374151 !important;
+            transition: all 0.3s ease;
         }
 
-        [data-theme="light"] .login-form input::placeholder {
-            color: #fcd34d !important;
+        [data-theme="dark"] .google-btn {
+            background: rgba(51, 65, 85, 0.9) !important;
+            border: 1px solid rgba(71, 85, 105, 0.8) !important;
+            color: #e5e7eb !important;
         }
 
-        [data-theme="light"] .google-btn {
-            color: #fbbf24 !important;
+        .google-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
-        [data-theme="light"] .login-form .google-btn span {
-            color: #000000 !important;
+        .separator-text {
+            background: rgba(255, 255, 255, 0.95) !important;
+            color: #6b7280 !important;
         }
 
-        [data-theme="light"] .separator-text {
-            color: #fcd34d !important;
-        }
-
-        [data-theme="light"] .login-title {
-            color: #fbbf24 !important;
-        }
-
-        [data-theme="light"] .login-subtitle {
-            color: #fcd34d !important;
-        }
-        
-        @keyframes loginSlideIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.8) translateY(-100px) rotateX(90deg);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) translateY(0) rotateX(0deg);
-            }
+        [data-theme="dark"] .separator-text {
+            background: rgba(30, 41, 59, 0.95) !important;
+            color: #9ca3af !important;
         }
 
         .glass-effect {
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(25px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
         }
 
         [data-theme="dark"] .glass-effect {
@@ -158,29 +180,15 @@
         }
         
         .calendar-day {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
         
-        .calendar-day::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-        
-        .calendar-day:hover::before {
-            left: 100%;
-        }
-        
         .calendar-day:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            z-index: 10;
         }
 
         .calendar-day.today {
@@ -191,8 +199,12 @@
         }
 
         @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7); }
-            50% { box-shadow: 0 0 0 10px rgba(102, 126, 234, 0); }
+            0%, 100% { 
+                box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+            }
+            50% { 
+                box-shadow: 0 0 0 10px rgba(102, 126, 234, 0);
+            }
         }
         
         .event-indicator {
@@ -200,13 +212,7 @@
             height: 3px;
             border-radius: 2px;
             margin: 1px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-            animation: eventPulse 2s infinite;
-        }
-
-        @keyframes eventPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
         
         .event-fgts { background: linear-gradient(135deg, #ef4444, #dc2626); }
@@ -230,36 +236,14 @@
             color: #fca5a5;
         }
         
-        .calendar-fade-out {
-            opacity: 0;
-            transform: translateY(-30px) scale(0.95);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .calendar-fade-in {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .year-bounce {
-            animation: yearBounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        
-        @keyframes yearBounce {
-            0% { transform: scale(1) rotateY(0deg); }
-            50% { transform: scale(1.2) rotateY(180deg); }
-            100% { transform: scale(1) rotateY(360deg); }
-        }
-        
         .month-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s ease;
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             position: relative;
             overflow: hidden;
         }
-        
+
         .month-card::before {
             content: '';
             position: absolute;
@@ -269,7 +253,7 @@
             height: 4px;
             background: var(--primary-gradient);
             transform: scaleX(0);
-            transition: transform 0.3s ease;
+            transition: transform 0.5s ease;
         }
 
         [data-theme="light"] .month-card::before {
@@ -281,8 +265,9 @@
         }
         
         .month-card:hover {
-            transform: translateY(-12px) scale(1.03);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            z-index: 5;
         }
         
         .month-header {
@@ -290,58 +275,13 @@
             position: relative;
             overflow: hidden;
         }
-
-        .month-header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-            transform: rotate(45deg);
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-        
-        .modal-fade-in {
-            animation: modalFadeIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        
-        .modal-fade-out {
-            animation: modalFadeOut 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        @keyframes modalFadeIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.8) translateY(-50px) rotateX(90deg);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) translateY(0) rotateX(0deg);
-            }
-        }
-        
-        @keyframes modalFadeOut {
-            0% {
-                opacity: 1;
-                transform: scale(1) translateY(0) rotateX(0deg);
-            }
-            100% {
-                opacity: 0;
-                transform: scale(0.8) translateY(-50px) rotateX(-90deg);
-            }
-        }
         
         .modal-content {
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-gradient {
@@ -351,23 +291,8 @@
             overflow: hidden;
         }
 
-        .btn-gradient::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn-gradient:hover::before {
-            left: 100%;
-        }
-
         .btn-gradient:hover {
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(1.02);
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
@@ -381,70 +306,22 @@
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            transition: all 0.4s ease;
         }
 
-        .mini-calendar {
-            width: 200px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        .floating-nav:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
         }
 
-        .timeline-item {
-            position: relative;
-            padding-left: 24px;
-            margin-bottom: 16px;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 8px;
-            top: 8px;
-            width: 8px;
-            height: 8px;
-            background: var(--primary-gradient);
-            border-radius: 50%;
-            box-shadow: 0 0 0 4px var(--bg-secondary);
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            left: 11px;
-            top: 20px;
-            width: 2px;
-            height: calc(100% + 8px);
-            background: var(--border-color);
-        }
-
-        .timeline-item:last-child::after {
-            display: none;
-        }
-
-        .swipe-indicator {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 4px;
-        }
-
-        .swipe-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.3);
+        .floating-nav button {
             transition: all 0.3s ease;
         }
 
-        .swipe-dot.active {
-            background: white;
-            transform: scale(1.2);
+        .floating-nav button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
         }
 
         .filter-chip {
@@ -457,40 +334,19 @@
             border-radius: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .filter-chip:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
 
         .filter-chip.active {
             background: var(--primary-gradient);
             color: white;
             border-color: transparent;
-        }
-
-        .stats-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .stats-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .stats-number {
-            font-size: 2rem;
-            font-weight: bold;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         /* Mobile optimizations */
@@ -501,10 +357,6 @@
                 right: 20px;
                 top: auto;
                 transform: none;
-            }
-
-            .month-card {
-                margin-bottom: 20px;
             }
 
             .calendar-day {
@@ -518,12 +370,6 @@
             }
         }
 
-        /* Touch gestures */
-        .swipeable {
-            touch-action: pan-y;
-            user-select: none;
-        }
-
         /* Accessibility */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
@@ -532,45 +378,36 @@
                 transition-duration: 0.01ms !important;
             }
         }
-
-        /* High contrast mode */
-        @media (prefers-contrast: high) {
-            .calendar-day {
-                border: 2px solid var(--text-primary);
-            }
-            
-            .event-indicator {
-                border: 1px solid var(--text-primary);
-            }
-        }
     </style>
 </head>
 <body class="min-h-screen theme-transition" data-theme="light">
     <!-- Login Modal -->
     <div id="loginModal" class="fixed inset-0 login-modal flex items-center justify-center z-50">
-        <div class="rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4 login-form glass-effect">
+        <div class="rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4 login-form">
             <div class="text-center mb-8">
-                <div class="text-6xl mb-4 animate-bounce">🔐</div>
-                <h2 class="text-3xl font-bold mb-2 login-title">Calendário</h2>
-                <p class="login-subtitle">Faça login para acessar seu calendário</p>
+                <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center">
+                    <i data-lucide="calendar" class="w-8 h-8 text-white"></i>
+                </div>
+                <h2 class="login-title mb-2">Calendário RH</h2>
+                <p class="login-subtitle">Entre com sua conta para continuar</p>
             </div>
             
             <div id="loginForm">
                 <div class="mb-6">
                     <label class="block text-sm font-medium mb-2">Email</label>
-                    <input type="email" id="loginEmail" class="w-full p-3 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 glass-effect" placeholder="Digite seu email">
+                    <input type="email" id="loginEmail" class="w-full p-3 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300" placeholder="Digite seu email">
                 </div>
                 <div class="mb-6">
                     <label class="block text-sm font-medium mb-2">Senha</label>
                     <div class="relative">
-                        <input type="password" id="loginPassword" class="w-full p-3 pr-12 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 glass-effect" placeholder="Digite sua senha">
+                        <input type="password" id="loginPassword" class="w-full p-3 pr-12 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300" placeholder="Digite sua senha">
                         <button type="button" onclick="togglePasswordVisibility('loginPassword', 'loginToggle')" id="loginToggle" class="absolute right-3 top-1/2 transform -translate-y-1/2 hover:scale-110 focus:outline-none transition-all duration-300" style="color: var(--text-secondary);">
                             <i data-lucide="eye" class="w-5 h-5"></i>
                         </button>
                     </div>
                 </div>
-                <button onclick="signInWithEmail()" class="w-full btn-gradient text-white p-3 rounded-xl font-semibold mb-4 transition-all duration-300">
-                    <i data-lucide="rocket" class="w-5 h-5 inline mr-2"></i>Entrar
+                <button onclick="signInWithEmail()" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white p-3 rounded-xl font-semibold mb-4 transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    <i data-lucide="log-in" class="w-5 h-5 inline mr-2"></i>Entrar
                 </button>
                 <div class="mb-4">
                     <div class="relative">
@@ -582,7 +419,7 @@
                         </div>
                     </div>
                 </div>
-                <button onclick="signInWithGoogle()" class="w-full p-3 rounded-xl font-semibold mb-4 transition-all duration-300 flex items-center justify-center space-x-2 glass-effect hover:scale-105 google-btn">
+                <button onclick="signInWithGoogle()" class="w-full p-3 rounded-xl font-semibold mb-4 transition-all duration-300 flex items-center justify-center space-x-2 hover:scale-105 google-btn">
                     <svg class="w-5 h-5" viewBox="0 0 24 24">
                         <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                         <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -591,39 +428,39 @@
                     </svg>
                     <span>Entrar com Google</span>
                 </button>
-                <button onclick="showRegisterForm()" class="w-full text-white p-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105" style="background: var(--success-gradient);">
+                <button onclick="showRegisterForm()" class="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white p-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
                     <i data-lucide="user-plus" class="w-5 h-5 inline mr-2"></i>Criar Nova Conta
                 </button>
             </div>
             
             <div id="registerForm" class="hidden">
                 <div class="mb-6">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                    <input type="email" id="registerEmail" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Digite seu email">
+                    <label class="block text-sm font-medium mb-2">Email</label>
+                    <input type="email" id="registerEmail" class="w-full p-3 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300" placeholder="Digite seu email">
                 </div>
                 <div class="mb-6">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Senha</label>
+                    <label class="block text-sm font-medium mb-2">Senha</label>
                     <div class="relative">
-                        <input type="password" id="registerPassword" class="w-full p-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Crie uma senha (mín. 6 caracteres)">
-                        <button type="button" onclick="togglePasswordVisibility('registerPassword', 'registerToggle')" id="registerToggle" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none">
-                            👁️
+                        <input type="password" id="registerPassword" class="w-full p-3 pr-12 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300" placeholder="Crie uma senha (mín. 6 caracteres)">
+                        <button type="button" onclick="togglePasswordVisibility('registerPassword', 'registerToggle')" id="registerToggle" class="absolute right-3 top-1/2 transform -translate-y-1/2 hover:scale-110 focus:outline-none transition-all duration-300" style="color: var(--text-secondary);">
+                            <i data-lucide="eye" class="w-5 h-5"></i>
                         </button>
                     </div>
                 </div>
                 <div class="mb-6">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Confirmar Senha</label>
+                    <label class="block text-sm font-medium mb-2">Confirmar Senha</label>
                     <div class="relative">
-                        <input type="password" id="confirmPassword" class="w-full p-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Confirme sua senha">
-                        <button type="button" onclick="togglePasswordVisibility('confirmPassword', 'confirmToggle')" id="confirmToggle" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none">
-                            👁️
+                        <input type="password" id="confirmPassword" class="w-full p-3 pr-12 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300" placeholder="Confirme sua senha">
+                        <button type="button" onclick="togglePasswordVisibility('confirmPassword', 'confirmToggle')" id="confirmToggle" class="absolute right-3 top-1/2 transform -translate-y-1/2 hover:scale-110 focus:outline-none transition-all duration-300" style="color: var(--text-secondary);">
+                            <i data-lucide="eye" class="w-5 h-5"></i>
                         </button>
                     </div>
                 </div>
-                <button onclick="createAccountWithEmail()" class="w-full bg-green-600 hover:bg-green-700 text-white p-3 rounded-lg font-semibold mb-4 transition-all duration-300">
-                    ✅ Criar Conta
+                <button onclick="createAccountWithEmail()" class="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white p-3 rounded-xl font-semibold mb-4 transition-all duration-300 transform hover:scale-[1.02]">
+                    <i data-lucide="user-plus" class="w-5 h-5 inline mr-2"></i>Criar Conta
                 </button>
-                <button onclick="showLoginForm()" class="w-full bg-gray-500 hover:bg-gray-600 text-white p-3 rounded-lg font-semibold transition-all duration-300">
-                    ← Voltar ao Login
+                <button onclick="showLoginForm()" class="w-full bg-gray-500 hover:bg-gray-600 text-white p-3 rounded-xl font-semibold transition-all duration-300">
+                    <i data-lucide="arrow-left" class="w-5 h-5 inline mr-2"></i>Voltar ao Login
                 </button>
             </div>
             
@@ -636,12 +473,6 @@
         <div class="flex flex-col space-y-3">
             <button onclick="toggleTheme()" class="p-3 rounded-lg transition-all duration-300 hover:scale-110" style="background: var(--bg-card); border: 1px solid var(--border-color);" title="Alternar tema">
                 <i data-lucide="sun" class="w-5 h-5" id="themeIcon" style="color: var(--text-primary);"></i>
-            </button>
-            <button onclick="toggleViewMode()" class="p-3 rounded-lg transition-all duration-300 hover:scale-110" style="background: var(--bg-card); border: 1px solid var(--border-color);" title="Vista expandida">
-                <i data-lucide="maximize" class="w-5 h-5" style="color: var(--text-primary);"></i>
-            </button>
-            <button onclick="showMiniCalendar()" class="p-3 rounded-lg transition-all duration-300 hover:scale-110" style="background: var(--bg-card); border: 1px solid var(--border-color);" title="Mini calendário">
-                <i data-lucide="calendar" class="w-5 h-5" style="color: var(--text-primary);"></i>
             </button>
             <button onclick="showTimeline()" class="p-3 rounded-lg transition-all duration-300 hover:scale-110" style="background: var(--bg-card); border: 1px solid var(--border-color);" title="Próximos eventos">
                 <i data-lucide="clock" class="w-5 h-5" style="color: var(--text-primary);"></i>
@@ -661,9 +492,9 @@
         <div class="mb-8">
             <div class="flex justify-between items-center mb-4">
                 <div class="w-20"></div>
-                <h1 class="text-4xl font-bold flex-1 text-center bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent" style="font-family: 'Georgia', serif;">Calendário</h1>
+                <h1 class="text-4xl font-bold flex-1 text-center bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent" style="font-family: 'Georgia', serif;">Calendário RH</h1>
                 <div class="w-20 flex justify-end">
-                    <button onclick="logout()" class="text-white px-4 py-2 rounded-xl font-semibold transition-all duration-300 hover:scale-105" style="background: var(--secondary-gradient);">
+                    <button onclick="logout()" class="text-white px-4 py-2 rounded-xl font-semibold transition-all duration-300 hover:scale-110" style="background: var(--secondary-gradient);">
                         <i data-lucide="log-out" class="w-4 h-4 inline mr-1"></i>Sair
                     </button>
                 </div>
@@ -671,27 +502,6 @@
             <div class="text-center">
                 <div id="userWelcome" class="text-lg mb-2" style="color: var(--text-primary);"></div>
                 <div id="storageStatus" class="text-sm mt-2" style="color: var(--text-secondary);"></div>
-                <div id="deviceInfo" class="text-xs mt-1" style="color: var(--text-secondary);"></div>
-            </div>
-        </div>
-
-        <!-- Statistics Cards -->
-        <div id="statsSection" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 hidden">
-            <div class="stats-card">
-                <div class="stats-number" id="totalEvents">0</div>
-                <div style="color: var(--text-secondary);">Eventos</div>
-            </div>
-            <div class="stats-card">
-                <div class="stats-number" id="totalNotes">0</div>
-                <div style="color: var(--text-secondary);">Observações</div>
-            </div>
-            <div class="stats-card">
-                <div class="stats-number" id="totalBirthdays">0</div>
-                <div style="color: var(--text-secondary);">Aniversários</div>
-            </div>
-            <div class="stats-card">
-                <div class="stats-number" id="upcomingEvents">0</div>
-                <div style="color: var(--text-secondary);">Próximos</div>
             </div>
         </div>
 
@@ -718,23 +528,6 @@
                     <i data-lucide="sticky-note" class="w-4 h-4"></i>
                     <span>Observações</span>
                 </div>
-            </div>
-        </div>
-
-        <!-- Daily Notifications -->
-        <div id="dailyNotifications" class="mb-8 hidden">
-            <div class="bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl shadow-lg p-6 border-l-4 border-yellow-400">
-                <div class="flex items-center mb-4">
-                    <div class="text-3xl mr-3">🔔</div>
-                    <div>
-                        <h3 class="text-xl font-bold">Lembretes de Hoje</h3>
-                        <p id="todayDate" class="text-blue-100"></p>
-                    </div>
-                </div>
-                <div id="todayItems" class="space-y-3"></div>
-                <button onclick="dismissNotifications()" class="mt-4 bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-4 py-2 rounded-lg font-semibold transition-all duration-300">
-                    ✅ Entendi, dispensar
-                </button>
             </div>
         </div>
 
@@ -807,13 +600,15 @@
 
         <!-- Event Details Modal -->
         <div id="eventModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-            <div class="bg-white rounded-xl p-6 max-w-md mx-4 modal-content">
+            <div class="rounded-xl p-6 max-w-md mx-4 modal-content">
                 <div class="flex justify-between items-center mb-4">
-                    <h3 id="modalTitle" class="text-xl font-bold text-gray-800"></h3>
-                    <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 text-2xl">×</button>
+                    <h3 id="modalTitle" class="text-xl font-bold" style="color: var(--text-primary);"></h3>
+                    <button onclick="closeModal()" class="hover:scale-110 transition-all duration-300" style="color: var(--text-secondary);">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
                 </div>
-                <div id="modalContent" class="text-gray-600"></div>
-                <button onclick="closeModal()" class="mt-4 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg w-full">
+                <div id="modalContent" style="color: var(--text-secondary);"></div>
+                <button onclick="closeModal()" class="mt-4 btn-gradient text-white px-4 py-2 rounded-xl w-full">
                     Fechar
                 </button>
             </div>
@@ -821,58 +616,66 @@
 
         <!-- Notes Modal -->
         <div id="notesModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-            <div class="bg-white rounded-xl p-6 max-w-md mx-4 w-full modal-content">
+            <div class="rounded-xl p-6 max-w-md mx-4 w-full modal-content">
                 <div class="flex justify-between items-center mb-4">
-                    <h3 id="notesModalTitle" class="text-xl font-bold text-gray-800">📝 Observações</h3>
-                    <button onclick="closeNotesModal()" class="text-gray-500 hover:text-gray-700 text-2xl">×</button>
+                    <h3 id="notesModalTitle" class="text-xl font-bold flex items-center" style="color: var(--text-primary);">
+                        <i data-lucide="sticky-note" class="w-5 h-5 mr-2"></i>Observações
+                    </h3>
+                    <button onclick="closeNotesModal()" class="hover:scale-110 transition-all duration-300" style="color: var(--text-secondary);">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
                 </div>
                 <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Adicionar observação:</label>
-                    <textarea id="noteInput" class="w-full p-3 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" rows="4" placeholder="Digite sua observação aqui..."></textarea>
+                    <label class="block text-sm font-medium mb-2" style="color: var(--text-primary);">Adicionar observação:</label>
+                    <textarea id="noteInput" class="w-full p-3 border rounded-xl resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300" style="border-color: var(--border-color); background: var(--bg-secondary); color: var(--text-primary);" rows="4" placeholder="Digite sua observação aqui..."></textarea>
                 </div>
                 <div class="flex space-x-3">
-                    <button onclick="saveNote()" class="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg font-semibold">
-                        💾 Salvar
+                    <button onclick="saveNote()" class="flex-1 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white px-4 py-2 rounded-xl font-semibold transition-all duration-300">
+                        <i data-lucide="save" class="w-4 h-4 inline mr-1"></i>Salvar
                     </button>
-                    <button onclick="deleteNote()" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold">
-                        🗑️ Excluir
+                    <button onclick="deleteNote()" class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-xl font-semibold transition-all duration-300">
+                        <i data-lucide="trash-2" class="w-4 h-4 inline mr-1"></i>Excluir
                     </button>
-                    <button onclick="closeNotesModal()" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg font-semibold">
+                    <button onclick="closeNotesModal()" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-xl font-semibold transition-all duration-300">
                         Cancelar
                     </button>
                 </div>
-                <div id="existingNote" class="mt-4 p-3 bg-gray-50 rounded-lg hidden">
-                    <h4 class="font-semibold text-gray-800 mb-2">Observação atual:</h4>
-                    <p id="existingNoteText" class="text-gray-600"></p>
+                <div id="existingNote" class="mt-4 p-3 rounded-xl hidden" style="background: var(--bg-secondary);">
+                    <h4 class="font-semibold mb-2" style="color: var(--text-primary);">Observação atual:</h4>
+                    <p id="existingNoteText" style="color: var(--text-secondary);"></p>
                 </div>
             </div>
         </div>
 
         <!-- Birthday Modal -->
         <div id="birthdayModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-            <div class="bg-white rounded-xl p-6 max-w-md mx-4 w-full modal-content">
+            <div class="rounded-xl p-6 max-w-md mx-4 w-full modal-content">
                 <div class="flex justify-between items-center mb-4">
-                    <h3 id="birthdayModalTitle" class="text-xl font-bold text-gray-800">🎂 Aniversários</h3>
-                    <button onclick="closeBirthdayModal()" class="text-gray-500 hover:text-gray-700 text-2xl">×</button>
+                    <h3 id="birthdayModalTitle" class="text-xl font-bold flex items-center" style="color: var(--text-primary);">
+                        <i data-lucide="cake" class="w-5 h-5 mr-2"></i>Aniversários
+                    </h3>
+                    <button onclick="closeBirthdayModal()" class="hover:scale-110 transition-all duration-300" style="color: var(--text-secondary);">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
                 </div>
                 <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Nome da pessoa:</label>
-                    <input type="text" id="birthdayInput" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="Digite o nome da pessoa...">
+                    <label class="block text-sm font-medium mb-2" style="color: var(--text-primary);">Nome da pessoa:</label>
+                    <input type="text" id="birthdayInput" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300" style="border-color: var(--border-color); background: var(--bg-secondary); color: var(--text-primary);" placeholder="Digite o nome da pessoa...">
                 </div>
                 <div class="flex space-x-3">
-                    <button onclick="saveBirthday()" class="flex-1 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-semibold">
-                        🎂 Salvar
+                    <button onclick="saveBirthday()" class="flex-1 bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white px-4 py-2 rounded-xl font-semibold transition-all duration-300">
+                        <i data-lucide="cake" class="w-4 h-4 inline mr-1"></i>Salvar
                     </button>
-                    <button onclick="deleteBirthday()" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold">
-                        🗑️ Excluir
+                    <button onclick="deleteBirthday()" class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-xl font-semibold transition-all duration-300">
+                        <i data-lucide="trash-2" class="w-4 h-4 inline mr-1"></i>Excluir
                     </button>
-                    <button onclick="closeBirthdayModal()" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg font-semibold">
+                    <button onclick="closeBirthdayModal()" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-xl font-semibold transition-all duration-300">
                         Cancelar
                     </button>
                 </div>
-                <div id="existingBirthday" class="mt-4 p-3 bg-orange-50 rounded-lg hidden">
-                    <h4 class="font-semibold text-gray-800 mb-2">Aniversário atual:</h4>
-                    <p id="existingBirthdayText" class="text-gray-600"></p>
+                <div id="existingBirthday" class="mt-4 p-3 rounded-xl hidden" style="background: var(--bg-secondary);">
+                    <h4 class="font-semibold mb-2" style="color: var(--text-primary);">Aniversário atual:</h4>
+                    <p id="existingBirthdayText" style="color: var(--text-secondary);"></p>
                 </div>
             </div>
         </div>
@@ -898,21 +701,6 @@
             </div>
         </div>
 
-        <!-- Mini Calendar Modal -->
-        <div id="miniCalendarModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-            <div class="mini-calendar modal-content">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-lg font-bold" style="color: var(--text-primary);">Navegação Rápida</h3>
-                    <button onclick="closeMiniCalendarModal()" class="hover:scale-110 transition-all duration-300" style="color: var(--text-secondary);">
-                        <i data-lucide="x" class="w-5 h-5"></i>
-                    </button>
-                </div>
-                <div id="miniCalendarContent">
-                    <!-- Mini calendar will be generated here -->
-                </div>
-            </div>
-        </div>
-
         <!-- Footer -->
         <footer class="mt-16 text-center py-8">
             <div class="rounded-2xl p-6 mx-4 glass-effect" style="background: var(--bg-card); border: 1px solid var(--border-color);">
@@ -928,7 +716,6 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
         import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc, collection, query, where, getDocs, onSnapshot, addDoc, updateDoc, deleteDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
 
         // Firebase configuration
         const firebaseConfig = {
@@ -945,7 +732,6 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
-        const analytics = getAnalytics(app);
         const googleProvider = new GoogleAuthProvider();
 
         // Make Firebase services available globally
@@ -983,10 +769,64 @@
         let realtimeListener = null;
         let currentTheme = 'light';
         let activeFilters = ['all'];
-        let isExpandedView = false;
-        let touchStartX = 0;
-        let touchEndX = 0;
         
+        // Months array
+        const months = [
+            'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+            'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+        ];
+
+        // National holidays
+        const nationalHolidays = {
+            '2025-01-01': 'Confraternização Universal',
+            '2025-04-21': 'Tiradentes',
+            '2025-05-01': 'Dia do Trabalhador',
+            '2025-09-07': 'Independência do Brasil',
+            '2025-10-12': 'Nossa Senhora Aparecida',
+            '2025-11-02': 'Finados',
+            '2025-11-15': 'Proclamação da República',
+            '2025-12-25': 'Natal'
+        };
+
+        // Fiscal events data
+        const fiscalEvents = {
+            // FGTS - 7º dia útil
+            'fgts': {
+                title: 'FGTS',
+                description: 'Recolhimento do FGTS - até o 7º dia útil',
+                type: 'event-fgts',
+                days: [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7] // 7º dia útil de cada mês
+            },
+            // INSS - 20º dia
+            'inss': {
+                title: 'INSS',
+                description: 'Recolhimento do INSS - até o dia 20',
+                type: 'event-inss',
+                days: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20]
+            },
+            // IRRF - último dia útil
+            'irrf': {
+                title: 'IRRF',
+                description: 'Recolhimento do IRRF - último dia útil',
+                type: 'event-irrf',
+                days: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31] // Será ajustado para último dia útil
+            },
+            // PIS - 20º dia
+            'pis': {
+                title: 'PIS',
+                description: 'Recolhimento do PIS - até o dia 20',
+                type: 'event-pis',
+                days: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20]
+            },
+            // Folha de pagamento - 5º dia útil
+            'folha': {
+                title: 'Folha de Pagamento',
+                description: 'Fechamento da folha de pagamento - 5º dia útil',
+                type: 'event-folha',
+                days: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5] // 5º dia útil
+            }
+        };
+
         // Firebase Authentication Functions
         async function signInWithGoogle() {
             try {
@@ -999,12 +839,8 @@
                 console.log('✅ Login Google realizado:', currentUser);
                 showMessage('Login realizado com sucesso! 🎉');
                 
-                // Save user info to Firestore
                 await saveUserToFirestore(firebaseUser);
-                
-                // Setup real-time sync
                 setupRealtimeSync();
-                
                 showMainContent();
                 
                 setTimeout(() => {
@@ -1047,12 +883,8 @@
                 console.log('✅ Login com email realizado:', currentUser);
                 showMessage('Login realizado com sucesso! 🎉');
                 
-                // Save user info to Firestore
                 await saveUserToFirestore(firebaseUser);
-                
-                // Setup real-time sync
                 setupRealtimeSync();
-                
                 showMainContent();
                 
                 setTimeout(() => {
@@ -1121,12 +953,8 @@
                 console.log('✅ Conta criada:', currentUser);
                 showMessage('Conta criada com sucesso! 🎉');
                 
-                // Save user info to Firestore
                 await saveUserToFirestore(firebaseUser);
-                
-                // Setup real-time sync
                 setupRealtimeSync();
-                
                 showMainContent();
                 
                 setTimeout(() => {
@@ -1176,11 +1004,9 @@
             }
         }
         
-        // Função para sincronizar eventos em tempo real
         function setupRealtimeSync() {
             if (!firebaseUser) return;
             
-            // Remove listener anterior se existir
             if (realtimeListener) {
                 try {
                     realtimeListener();
@@ -1191,14 +1017,10 @@
             
             const uid = firebaseUser.uid;
             
-            // Primeiro, carrega as notas existentes
             loadUserNotes().then(() => {
-                // Depois configura o listener em tempo real
                 try {
-                    // Nova estrutura: /users/{userId}/events/{eventId}
                     const eventsRef = window.firestoreCollection(window.firebaseDb, 'users', uid, 'events');
                     
-                    // Listener em tempo real para eventos/notas
                     realtimeListener = window.firestoreOnSnapshot(eventsRef, (snapshot) => {
                         const notes = {};
                         const birthdays = {};
@@ -1213,38 +1035,32 @@
                             }
                         });
                         
-                        console.log('🔄 Dados sincronizados em tempo real:', Object.keys(notes).length, 'notas,', Object.keys(birthdays).length, 'aniversários');
+                        console.log('🔄 Dados sincronizados:', Object.keys(notes).length, 'notas,', Object.keys(birthdays).length, 'aniversários');
                         
-                        // Atualizar dados com os dados sincronizados
                         userNotes = notes;
                         userBirthdays = birthdays;
                         
-                        // Atualizar a UI do calendário
                         generateCalendar();
                         updateStorageStatus('🌐 Sincronizado em tempo real');
                         
                     }, (error) => {
-                        console.error('❌ Erro no listener de tempo real:', error);
-                        updateStorageStatus('⚠️ Usando modo offline - dados salvos localmente');
-                        
-                        // Em caso de erro, usa dados locais
+                        console.error('❌ Erro no listener:', error);
+                        updateStorageStatus('⚠️ Usando modo offline');
                         loadLocalData();
                     });
                 } catch (error) {
                     console.error('❌ Erro ao configurar listener:', error);
                     updateStorageStatus('⚠️ Modo offline ativo');
-                    loadLocalNotes();
+                    loadLocalData();
                 }
             });
         }
         
-        // Função para carregar dados do usuário
         async function loadUserNotes() {
             if (!firebaseUser) return;
             
             try {
                 const uid = firebaseUser.uid;
-                // Nova estrutura: /users/{userId}/events
                 const eventsRef = window.firestoreCollection(window.firebaseDb, 'users', uid, 'events');
                 
                 const querySnapshot = await window.firestoreGetDocs(eventsRef);
@@ -1265,7 +1081,6 @@
                 userBirthdays = birthdays;
                 console.log('✅ Dados carregados:', Object.keys(notes).length, 'notas,', Object.keys(birthdays).length, 'aniversários');
                 
-                // Salvar localmente como backup
                 localStorage.setItem(`notes_${uid}`, JSON.stringify(notes));
                 localStorage.setItem(`birthdays_${uid}`, JSON.stringify(birthdays));
                 
@@ -1279,7 +1094,6 @@
             }
         }
         
-        // Função para carregar dados locais
         function loadLocalData() {
             if (!firebaseUser) return;
             
@@ -1288,17 +1102,8 @@
                 const localNotes = localStorage.getItem(`notes_${uid}`);
                 const localBirthdays = localStorage.getItem(`birthdays_${uid}`);
                 
-                if (localNotes) {
-                    userNotes = JSON.parse(localNotes);
-                } else {
-                    userNotes = {};
-                }
-                
-                if (localBirthdays) {
-                    userBirthdays = JSON.parse(localBirthdays);
-                } else {
-                    userBirthdays = {};
-                }
+                userNotes = localNotes ? JSON.parse(localNotes) : {};
+                userBirthdays = localBirthdays ? JSON.parse(localBirthdays) : {};
                 
                 console.log('📱 Dados locais carregados:', Object.keys(userNotes).length, 'notas,', Object.keys(userBirthdays).length, 'aniversários');
                 generateCalendar();
@@ -1313,14 +1118,11 @@
             }
         }
         
-        // Função para salvar nota no Firestore
         async function saveNoteToFirestore(date, content) {
             if (!firebaseUser) return false;
             
             try {
                 const uid = firebaseUser.uid;
-                
-                // Nova estrutura: /users/{userId}/events/{date}
                 const eventRef = window.firestoreDoc(window.firebaseDb, 'users', uid, 'events', date);
                 
                 const eventData = {
@@ -1334,22 +1136,20 @@
                 
                 console.log('✅ Nota salva no Firestore:', date);
                 
-                // Salvar localmente como backup
                 const localNotes = { ...userNotes };
                 localNotes[date] = content;
                 localStorage.setItem(`notes_${uid}`, JSON.stringify(localNotes));
                 
                 return true;
             } catch (error) {
-                console.error('❌ Erro ao salvar nota no Firestore:', error);
+                console.error('❌ Erro ao salvar nota:', error);
                 
-                // Salvar localmente em caso de erro
                 try {
                     const uid = firebaseUser.uid;
                     const localNotes = { ...userNotes };
                     localNotes[date] = content;
                     localStorage.setItem(`notes_${uid}`, JSON.stringify(localNotes));
-                    console.log('📱 Nota salva localmente como backup');
+                    console.log('📱 Nota salva localmente');
                     return true;
                 } catch (localError) {
                     console.error('❌ Erro ao salvar localmente:', localError);
@@ -1358,14 +1158,11 @@
             }
         }
 
-        // Função para salvar aniversário no Firestore
         async function saveBirthdayToFirestore(date, name) {
             if (!firebaseUser) return false;
             
             try {
                 const uid = firebaseUser.uid;
-                
-                // Nova estrutura: /users/{userId}/events/{date}
                 const eventRef = window.firestoreDoc(window.firebaseDb, 'users', uid, 'events', date);
                 
                 const eventData = {
@@ -1377,24 +1174,22 @@
                 
                 await window.firestoreSetDoc(eventRef, eventData, { merge: true });
                 
-                console.log('✅ Aniversário salvo no Firestore:', date, '-', name);
+                console.log('✅ Aniversário salvo:', date, '-', name);
                 
-                // Salvar localmente como backup
                 const localBirthdays = { ...userBirthdays };
                 localBirthdays[date] = name;
                 localStorage.setItem(`birthdays_${uid}`, JSON.stringify(localBirthdays));
                 
                 return true;
             } catch (error) {
-                console.error('❌ Erro ao salvar aniversário no Firestore:', error);
+                console.error('❌ Erro ao salvar aniversário:', error);
                 
-                // Salvar localmente em caso de erro
                 try {
                     const uid = firebaseUser.uid;
                     const localBirthdays = { ...userBirthdays };
                     localBirthdays[date] = name;
                     localStorage.setItem(`birthdays_${uid}`, JSON.stringify(localBirthdays));
-                    console.log('📱 Aniversário salvo localmente como backup');
+                    console.log('📱 Aniversário salvo localmente');
                     return true;
                 } catch (localError) {
                     console.error('❌ Erro ao salvar localmente:', localError);
@@ -1403,16 +1198,13 @@
             }
         }
 
-        // Função para deletar nota do Firestore
         async function deleteNoteFromFirestore(date) {
             if (!firebaseUser) return false;
             
             try {
                 const uid = firebaseUser.uid;
-                // Nova estrutura: /users/{userId}/events/{date}
                 const eventRef = window.firestoreDoc(window.firebaseDb, 'users', uid, 'events', date);
                 
-                // Se há aniversário na mesma data, apenas remove a nota
                 if (userBirthdays[date]) {
                     const eventData = {
                         date: date,
@@ -1424,18 +1216,16 @@
                     await window.firestoreDeleteDoc(eventRef);
                 }
                 
-                console.log('✅ Nota deletada do Firestore:', date);
+                console.log('✅ Nota deletada:', date);
                 
-                // Remover localmente também
                 const localNotes = { ...userNotes };
                 delete localNotes[date];
                 localStorage.setItem(`notes_${uid}`, JSON.stringify(localNotes));
                 
                 return true;
             } catch (error) {
-                console.error('❌ Erro ao deletar nota do Firestore:', error);
+                console.error('❌ Erro ao deletar nota:', error);
                 
-                // Deletar localmente em caso de erro
                 try {
                     const uid = firebaseUser.uid;
                     const localNotes = { ...userNotes };
@@ -1450,16 +1240,13 @@
             }
         }
 
-        // Função para deletar aniversário do Firestore
         async function deleteBirthdayFromFirestore(date) {
             if (!firebaseUser) return false;
             
             try {
                 const uid = firebaseUser.uid;
-                // Nova estrutura: /users/{userId}/events/{date}
                 const eventRef = window.firestoreDoc(window.firebaseDb, 'users', uid, 'events', date);
                 
-                // Se há nota na mesma data, apenas remove o aniversário
                 if (userNotes[date]) {
                     const eventData = {
                         date: date,
@@ -1471,18 +1258,16 @@
                     await window.firestoreDeleteDoc(eventRef);
                 }
                 
-                console.log('✅ Aniversário deletado do Firestore:', date);
+                console.log('✅ Aniversário deletado:', date);
                 
-                // Remover localmente também
                 const localBirthdays = { ...userBirthdays };
                 delete localBirthdays[date];
                 localStorage.setItem(`birthdays_${uid}`, JSON.stringify(localBirthdays));
                 
                 return true;
             } catch (error) {
-                console.error('❌ Erro ao deletar aniversário do Firestore:', error);
+                console.error('❌ Erro ao deletar aniversário:', error);
                 
-                // Deletar localmente em caso de erro
                 try {
                     const uid = firebaseUser.uid;
                     const localBirthdays = { ...userBirthdays };
@@ -1497,7 +1282,6 @@
             }
         }
         
-        // Firebase Auth State Observer
         function initFirebaseAuth() {
             window.firebaseOnAuthStateChanged(window.firebaseAuth, async (user) => {
                 if (user) {
@@ -1505,21 +1289,18 @@
                     currentUser = user.displayName || user.email;
                     console.log('🔥 Usuário autenticado:', currentUser);
                     
-                    // Setup real-time sync
                     setupRealtimeSync();
                     
-                    // Show main content if not already shown
                     if (document.getElementById('loginModal').style.display !== 'none') {
                         showMainContent();
                         document.getElementById('loginModal').style.display = 'none';
                     }
                 } else {
-                    // Remove real-time listener first
                     if (realtimeListener) {
                         try {
                             realtimeListener();
                         } catch (e) {
-                            console.log('Listener removido no auth state change');
+                            console.log('Listener removido');
                         }
                         realtimeListener = null;
                     }
@@ -1527,10 +1308,10 @@
                     firebaseUser = null;
                     currentUser = null;
                     userNotes = {};
+                    userBirthdays = {};
                     
                     console.log('🔥 Usuário deslogado');
                     
-                    // Show login modal only if not already showing
                     const loginModal = document.getElementById('loginModal');
                     if (loginModal && loginModal.style.display === 'none') {
                         loginModal.style.display = 'flex';
@@ -1567,19 +1348,19 @@
         function togglePasswordVisibility(inputId, toggleId) {
             const passwordInput = document.getElementById(inputId);
             const toggleButton = document.getElementById(toggleId);
+            const icon = toggleButton.querySelector('i');
             
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
-                toggleButton.textContent = '🙈';
-                toggleButton.title = 'Ocultar senha';
+                icon.setAttribute('data-lucide', 'eye-off');
             } else {
                 passwordInput.type = 'password';
-                toggleButton.textContent = '👁️';
-                toggleButton.title = 'Mostrar senha';
+                icon.setAttribute('data-lucide', 'eye');
             }
+            
+            lucide.createIcons();
         }
         
-        // Theme Functions
         function toggleTheme() {
             currentTheme = currentTheme === 'light' ? 'dark' : 'light';
             document.body.setAttribute('data-theme', currentTheme);
@@ -1591,38 +1372,30 @@
                 themeIcon.setAttribute('data-lucide', 'sun');
             }
             
-            // Reinitialize Lucide icons
             lucide.createIcons();
-            
-            // Save theme preference
             localStorage.setItem('theme', currentTheme);
             
-            // Add transition class
             document.body.classList.add('theme-transition');
             setTimeout(() => {
                 document.body.classList.remove('theme-transition');
-            }, 300);
+            }, 500);
         }
 
-        // Filter Functions
         function toggleFilter(filterType) {
             const filterChip = document.querySelector(`[data-filter="${filterType}"]`);
             
             if (filterType === 'all') {
-                // Reset all filters
                 activeFilters = ['all'];
                 document.querySelectorAll('.filter-chip').forEach(chip => {
                     chip.classList.remove('active');
                 });
                 filterChip.classList.add('active');
             } else {
-                // Remove 'all' if selecting specific filter
                 if (activeFilters.includes('all')) {
                     activeFilters = [];
                     document.querySelector('[data-filter="all"]').classList.remove('active');
                 }
                 
-                // Toggle specific filter
                 if (activeFilters.includes(filterType)) {
                     activeFilters = activeFilters.filter(f => f !== filterType);
                     filterChip.classList.remove('active');
@@ -1631,7 +1404,6 @@
                     filterChip.classList.add('active');
                 }
                 
-                // If no filters selected, activate 'all'
                 if (activeFilters.length === 0) {
                     activeFilters = ['all'];
                     document.querySelector('[data-filter="all"]').classList.add('active');
@@ -1641,43 +1413,10 @@
             generateCalendar();
         }
 
-        // View Mode Functions
-        function toggleViewMode() {
-            isExpandedView = !isExpandedView;
-            const viewButton = document.querySelector('button[onclick="toggleViewMode()"]');
-            const icon = viewButton.querySelector('i');
-            
-            if (isExpandedView) {
-                icon.setAttribute('data-lucide', 'minimize');
-                // Switch to single column view
-                showExpandedView();
-            } else {
-                icon.setAttribute('data-lucide', 'maximize');
-                // Switch back to grid view
-                showGridView();
-            }
-            
-            // Reinitialize Lucide icons
-            lucide.createIcons();
-        }
-
-        function showExpandedView() {
-            // Implementation for expanded single column view
-            const calendarGrid = document.getElementById('calendarGrid');
-            calendarGrid.className = 'grid grid-cols-1 gap-6 max-w-2xl mx-auto';
-        }
-
-        function showGridView() {
-            const calendarGrid = document.getElementById('calendarGrid');
-            calendarGrid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6';
-        }
-
-        // Timeline Functions
         function showTimeline() {
             const modal = document.getElementById('timelineModal');
             const content = document.getElementById('timelineContent');
             
-            // Generate upcoming events
             const upcomingEvents = getUpcomingEvents();
             
             let timelineHTML = '';
@@ -1686,7 +1425,7 @@
             } else {
                 upcomingEvents.forEach(event => {
                     timelineHTML += `
-                        <div class="timeline-item">
+                        <div class="border-l-4 border-blue-500 pl-4 mb-4 pb-4">
                             <div class="font-semibold" style="color: var(--text-primary);">${event.title}</div>
                             <div class="text-sm" style="color: var(--text-secondary);">${event.date}</div>
                             <div class="text-xs mt-1" style="color: var(--text-secondary);">${event.description}</div>
@@ -1710,7 +1449,6 @@
             const today = new Date();
             const events = [];
             
-            // Check next 30 days
             for (let i = 0; i < 30; i++) {
                 const checkDate = new Date(today);
                 checkDate.setDate(today.getDate() + i);
@@ -1726,7 +1464,6 @@
                     });
                 });
                 
-                // Add user notes and birthdays
                 if (userNotes[dateStr]) {
                     events.push({
                         title: 'Observação',
@@ -1751,140 +1488,26 @@
             return events.sort((a, b) => a.sortDate - b.sortDate).slice(0, 10);
         }
 
-        // Mini Calendar Functions
-        function showMiniCalendar() {
-            const modal = document.getElementById('miniCalendarModal');
-            const content = document.getElementById('miniCalendarContent');
-            
-            // Generate mini calendar for quick navigation
-            let miniHTML = '<div class="grid grid-cols-3 gap-2 mb-4">';
-            
-            for (let year = currentYear - 1; year <= currentYear + 1; year++) {
-                const isCurrentYear = year === currentYear;
-                miniHTML += `
-                    <button onclick="jumpToYear(${year}); closeMiniCalendarModal();" 
-                            class="p-2 rounded-lg transition-all duration-300 hover:scale-105 ${isCurrentYear ? 'btn-gradient text-white' : ''}"
-                            style="${!isCurrentYear ? 'background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary);' : ''}">
-                        ${year}
-                    </button>
-                `;
-            }
-            
-            miniHTML += '</div>';
-            
-            // Add month navigation
-            miniHTML += '<div class="grid grid-cols-3 gap-2">';
-            months.forEach((month, index) => {
-                miniHTML += `
-                    <button onclick="jumpToMonth(${index}); closeMiniCalendarModal();" 
-                            class="p-2 rounded-lg text-sm transition-all duration-300 hover:scale-105"
-                            style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary);">
-                        ${month.substring(0, 3)}
-                    </button>
-                `;
-            });
-            miniHTML += '</div>';
-            
-            content.innerHTML = miniHTML;
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-        }
-
-        function closeMiniCalendarModal() {
-            const modal = document.getElementById('miniCalendarModal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
-
-        function jumpToYear(year) {
-            currentYear = year;
-            updateYearDisplay();
-            generateCalendar();
-        }
-
-        function jumpToMonth(monthIndex) {
-            // Scroll to specific month in grid view
-            const monthCards = document.querySelectorAll('.month-card');
-            if (monthCards[monthIndex]) {
-                monthCards[monthIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        }
-
-        // Statistics Functions
-        function updateStatistics() {
-            const totalEvents = Object.keys(nationalHolidays).filter(date => date.startsWith(currentYear.toString())).length;
-            const totalNotes = Object.keys(userNotes).length;
-            const totalBirthdays = Object.keys(userBirthdays).length;
-            const upcomingEvents = getUpcomingEvents().length;
-            
-            document.getElementById('totalEvents').textContent = totalEvents;
-            document.getElementById('totalNotes').textContent = totalNotes;
-            document.getElementById('totalBirthdays').textContent = totalBirthdays;
-            document.getElementById('upcomingEvents').textContent = upcomingEvents;
-            
-            // Show stats section
-            document.getElementById('statsSection').classList.remove('hidden');
-        }
-
-        // Touch Gesture Functions
-        function handleTouchStart(e) {
-            touchStartX = e.changedTouches[0].screenX;
-        }
-
-        function handleTouchEnd(e) {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }
-
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const diff = touchStartX - touchEndX;
-            
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
-                    // Swipe left - next year
-                    changeYear(1);
-                } else {
-                    // Swipe right - previous year
-                    changeYear(-1);
-                }
-            }
-        }
-
         function showMainContent() {
             document.getElementById('mainContent').classList.remove('blur-background');
             document.getElementById('userWelcome').innerHTML = `<strong>👋 Bem-vindo, ${currentUser}!</strong>`;
             
-            // Show floating navigation
             document.getElementById('floatingNav').classList.remove('hidden');
             
-            // Initialize calendar for this user
             generateCalendar();
             updateStorageStatus();
-            updateStatistics();
-            cleanupOldDismissals();
-            checkDailyNotifications();
             
-            // Initialize Lucide icons
             lucide.createIcons();
             
-            // Load saved theme
             const savedTheme = localStorage.getItem('theme') || 'light';
             if (savedTheme !== currentTheme) {
                 toggleTheme();
             }
-            
-            // Add touch gesture support
-            const calendarGrid = document.getElementById('calendarGrid');
-            calendarGrid.addEventListener('touchstart', handleTouchStart, false);
-            calendarGrid.addEventListener('touchend', handleTouchEnd, false);
-            calendarGrid.classList.add('swipeable');
         }
         
         async function logout() {
             if (confirm('Tem certeza que deseja sair?')) {
                 try {
-                    // Remove real-time listener first
                     if (realtimeListener) {
                         try {
                             realtimeListener();
@@ -1894,31 +1517,25 @@
                         realtimeListener = null;
                     }
                     
-                    // Clear user data
                     currentUser = null;
                     firebaseUser = null;
                     userNotes = {};
                     userBirthdays = {};
                     
-                    // Sign out from Firebase
                     await window.firebaseSignOut(window.firebaseAuth);
-                    console.log('✅ Logout Firebase realizado');
+                    console.log('✅ Logout realizado');
                     
-                    // Show login modal again
                     document.getElementById('loginModal').style.display = 'flex';
                     document.getElementById('mainContent').classList.add('blur-background');
                     
-                    // Clear forms
                     document.getElementById('loginEmail').value = '';
                     document.getElementById('loginPassword').value = '';
                     document.getElementById('registerEmail').value = '';
                     document.getElementById('registerPassword').value = '';
                     document.getElementById('confirmPassword').value = '';
                     
-                    // Clear status
                     document.getElementById('userWelcome').innerHTML = '';
                     document.getElementById('storageStatus').textContent = '';
-                    document.getElementById('deviceInfo').textContent = '';
                     
                     showLoginForm();
                 } catch (error) {
@@ -1928,23 +1545,8 @@
             }
         }
         
-        function getDeviceInfo() {
-            const ua = navigator.userAgent;
-            let device = 'Desktop';
-            if (/Mobile|Android|iPhone|iPad/.test(ua)) {
-                device = /iPhone|iPad/.test(ua) ? 'iOS' : 'Android';
-            }
-            return {
-                type: device,
-                timestamp: new Date().toISOString(),
-                userAgent: ua.substring(0, 100) // Truncate for privacy
-            };
-        }
-        
-        // Update storage status display
         function updateStorageStatus(customMessage = null) {
             const statusDiv = document.getElementById('storageStatus');
-            const deviceDiv = document.getElementById('deviceInfo');
             
             if (customMessage) {
                 statusDiv.textContent = customMessage;
@@ -1962,445 +1564,12 @@
                 statusDiv.textContent = '📝 Nenhuma observação salva ainda';
                 statusDiv.className = 'text-sm text-gray-500 mt-2';
             }
-            
-            // Show device info
-            const deviceInfo = getDeviceInfo();
-            deviceDiv.textContent = `📱 Dispositivo: ${deviceInfo.type} • Sincronização em tempo real`;
-            deviceDiv.className = 'text-xs text-gray-500 mt-1';
         }
 
-        // Daily notifications system
-        function checkDailyNotifications() {
-            if (!currentUser) return;
-            
-            const today = new Date();
-            const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-            const dismissedKey = `dismissed_${currentUser}_${todayStr}`;
-            
-            // Check if already dismissed today
-            if (localStorage.getItem(dismissedKey)) {
-                console.log('📅 Notificações já foram dispensadas hoje para', currentUser);
-                return;
-            }
-            
-            const todayItems = [];
-            
-            // Check for user notes
-            if (userNotes[todayStr]) {
-                todayItems.push({
-                    type: 'note',
-                    icon: '📝',
-                    title: 'Sua Observação',
-                    description: userNotes[todayStr],
-                    priority: 'high'
-                });
-            }
-            
-            // Check for birthdays
-            if (userBirthdays[todayStr]) {
-                todayItems.push({
-                    type: 'birthday',
-                    icon: '🎂',
-                    title: 'Aniversário Hoje!',
-                    description: `Hoje é aniversário de ${userBirthdays[todayStr]}! 🎉`,
-                    priority: 'high'
-                });
-            }
-            
-            // Check for fiscal events
-            const events = getEventsForDay(today.getDate(), today.getMonth() + 1);
-            events.forEach(event => {
-                let icon = '📋';
-                let priority = 'medium';
-                
-                if (event.type === 'event-holiday') {
-                    icon = '🎉';
-                    priority = 'low';
-                } else if (event.type === 'event-fgts' || event.type === 'event-inss') {
-                    icon = '💰';
-                    priority = 'high';
-                } else if (event.type === 'event-folha') {
-                    icon = '📊';
-                    priority = 'high';
-                }
-                
-                todayItems.push({
-                    type: 'event',
-                    icon: icon,
-                    title: event.title,
-                    description: event.description,
-                    priority: priority
-                });
-            });
-            
-            // Show notifications if there are items
-            if (todayItems.length > 0) {
-                showDailyNotifications(todayItems, today);
-            }
-        }
-        
-        function showDailyNotifications(items, date) {
-            const notificationDiv = document.getElementById('dailyNotifications');
-            const todayDateDiv = document.getElementById('todayDate');
-            const todayItemsDiv = document.getElementById('todayItems');
-            
-            // Format date
-            const options = { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-            };
-            todayDateDiv.textContent = date.toLocaleDateString('pt-BR', options);
-            
-            // Sort items by priority (high, medium, low)
-            const priorityOrder = { 'high': 0, 'medium': 1, 'low': 2 };
-            items.sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
-            
-            // Generate items HTML
-            let itemsHTML = '';
-            items.forEach(item => {
-                let bgColor = 'bg-white bg-opacity-10';
-                let borderColor = 'border-white border-opacity-30';
-                
-                if (item.priority === 'high') {
-                    bgColor = 'bg-red-500 bg-opacity-20';
-                    borderColor = 'border-red-300';
-                } else if (item.priority === 'medium') {
-                    bgColor = 'bg-yellow-500 bg-opacity-20';
-                    borderColor = 'border-yellow-300';
-                }
-                
-                itemsHTML += `
-                    <div class="${bgColor} ${borderColor} border-l-4 rounded-lg p-4">
-                        <div class="flex items-start space-x-3">
-                            <div class="text-2xl">${item.icon}</div>
-                            <div class="flex-1">
-                                <h4 class="font-bold text-lg">${item.title}</h4>
-                                <p class="text-blue-100 mt-1">${item.description}</p>
-                                ${item.priority === 'high' ? '<span class="inline-block mt-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">🚨 URGENTE</span>' : ''}
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            todayItemsDiv.innerHTML = itemsHTML;
-            
-            // Show notification with animation
-            notificationDiv.classList.remove('hidden');
-            setTimeout(() => {
-                notificationDiv.style.opacity = '0';
-                notificationDiv.style.transform = 'translateY(-20px)';
-                notificationDiv.style.transition = 'all 0.5s ease';
-                notificationDiv.style.opacity = '1';
-                notificationDiv.style.transform = 'translateY(0)';
-            }, 100);
-            
-            console.log('🔔 Mostrando', items.length, 'notificação(ões) para hoje');
-        }
-        
-        function dismissNotifications() {
-            const today = new Date();
-            const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-            const dismissedKey = `dismissed_${currentUser}_${todayStr}`;
-            
-            // Mark as dismissed for today
-            localStorage.setItem(dismissedKey, 'true');
-            
-            // Hide notification with animation
-            const notificationDiv = document.getElementById('dailyNotifications');
-            notificationDiv.style.transition = 'all 0.5s ease';
-            notificationDiv.style.opacity = '0';
-            notificationDiv.style.transform = 'translateY(-20px)';
-            
-            setTimeout(() => {
-                notificationDiv.classList.add('hidden');
-                notificationDiv.style.opacity = '';
-                notificationDiv.style.transform = '';
-                notificationDiv.style.transition = '';
-            }, 500);
-            
-            console.log('✅ Notificações dispensadas para hoje');
-        }
-        
-        // Clean up old dismissed notifications (keep only last 30 days)
-        function cleanupOldDismissals() {
-            if (!currentUser) return;
-            
-            const thirtyDaysAgo = new Date();
-            thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-            
-            for (let i = 0; i < localStorage.length; i++) {
-                const key = localStorage.key(i);
-                if (key && key.startsWith(`dismissed_${currentUser}_`)) {
-                    const dateStr = key.replace(`dismissed_${currentUser}_`, '');
-                    const dismissedDate = new Date(dateStr);
-                    if (dismissedDate < thirtyDaysAgo) {
-                        localStorage.removeItem(key);
-                        i--; // Adjust index since we removed an item
-                    }
-                }
-            }
-        }
-
-        const months = [
-            'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-            'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-        ];
-
-        const fiscalEvents = {
-            // FGTS - dia 20 de cada mês
-            'fgts': { day: 20, type: 'event-fgts', title: 'FGTS', description: 'Recolhimento do FGTS referente ao mês anterior' },
-            // INSS - dia 20 de cada mês
-            'inss': { day: 20, type: 'event-inss', title: 'INSS', description: 'Recolhimento da contribuição previdenciária' },
-            // IRRF - último dia útil do mês
-            'irrf': { day: 30, type: 'event-irrf', title: 'IRRF', description: 'Recolhimento do Imposto de Renda Retido na Fonte' },
-            // PIS - dia 20 de cada mês
-            'pis': { day: 20, type: 'event-pis', title: 'PIS', description: 'Recolhimento do PIS sobre folha de pagamento' },
-            // Folha de pagamento - dia 5 de cada mês
-            'folha': { day: 5, type: 'event-folha', title: 'Folha', description: 'Fechamento da folha de pagamento' }
-        };
-
-        const specialEvents = {
-            // Fiscal obligations
-            '2024-01-31': { type: 'event-dirf', title: 'DIRF', description: 'Entrega da Declaração do Imposto de Renda Retido na Fonte' },
-            '2024-03-31': { type: 'event-rais', title: 'RAIS', description: 'Entrega da Relação Anual de Informações Sociais' },
-            '2024-04-30': { type: 'event-irrf', title: 'IRRF Anual', description: 'Declaração anual do Imposto de Renda' },
-            '2024-07-31': { type: 'event-rais', title: 'CAGED', description: 'Cadastro Geral de Empregados e Desempregados' }
-        };
-
-        const nationalHolidays = {
-            // 2022 holidays
-            '2022-01-01': { type: 'event-holiday', title: 'Confraternização Universal', description: 'Feriado Nacional' },
-            '2022-02-28': { type: 'event-holiday', title: 'Carnaval', description: 'Feriado Nacional (Segunda-feira)' },
-            '2022-03-01': { type: 'event-holiday', title: 'Carnaval', description: 'Feriado Nacional (Terça-feira)' },
-            '2022-03-19': { type: 'event-holiday', title: 'Dia de São José', description: 'Padroeiro de Itatiaia' },
-            '2022-04-15': { type: 'event-holiday', title: 'Sexta-feira Santa', description: 'Feriado Nacional' },
-            '2022-04-21': { type: 'event-holiday', title: 'Tiradentes', description: 'Feriado Nacional' },
-            '2022-04-23': { type: 'event-holiday', title: 'Dia de São Jorge', description: 'Feriado Regional' },
-            '2022-05-01': { type: 'event-holiday', title: 'Dia do Trabalhador', description: 'Feriado Nacional' },
-            '2022-06-01': { type: 'event-holiday', title: 'Aniversário de Itatiaia', description: 'Aniversário da Cidade' },
-            '2022-09-07': { type: 'event-holiday', title: 'Independência do Brasil', description: 'Feriado Nacional' },
-            '2022-10-07': { type: 'event-holiday', title: 'Nossa Senhora do Rosário', description: 'Feriado Regional' },
-            '2022-10-12': { type: 'event-holiday', title: 'Nossa Senhora Aparecida', description: 'Feriado Nacional' },
-            '2022-11-02': { type: 'event-holiday', title: 'Finados', description: 'Feriado Nacional' },
-            '2022-11-15': { type: 'event-holiday', title: 'Proclamação da República', description: 'Feriado Nacional' },
-            '2022-11-20': { type: 'event-holiday', title: 'Dia da Consciência Negra', description: 'Feriado Nacional' },
-            '2022-11-25': { type: 'event-holiday', title: 'Aniversário de Quatis', description: 'Aniversário da cidade de Quatis' },
-            '2022-11-30': { type: 'event-folha', title: '1ª Parcela 13º', description: 'Pagamento da primeira parcela do décimo terceiro salário' },
-            '2022-12-20': { type: 'event-folha', title: '2ª Parcela 13º', description: 'Pagamento da segunda parcela do décimo terceiro salário' },
-            '2022-12-25': { type: 'event-holiday', title: 'Natal', description: 'Feriado Nacional' },
-            
-            // 2023 holidays
-            '2023-01-01': { type: 'event-holiday', title: 'Confraternização Universal', description: 'Feriado Nacional' },
-            '2023-02-20': { type: 'event-holiday', title: 'Carnaval', description: 'Feriado Nacional (Segunda-feira)' },
-            '2023-02-21': { type: 'event-holiday', title: 'Carnaval', description: 'Feriado Nacional (Terça-feira)' },
-            '2023-03-19': { type: 'event-holiday', title: 'Dia de São José', description: 'Padroeiro de Itatiaia' },
-            '2023-04-07': { type: 'event-holiday', title: 'Sexta-feira Santa', description: 'Feriado Nacional' },
-            '2023-04-21': { type: 'event-holiday', title: 'Tiradentes', description: 'Feriado Nacional' },
-            '2023-04-23': { type: 'event-holiday', title: 'Dia de São Jorge', description: 'Feriado Regional' },
-            '2023-05-01': { type: 'event-holiday', title: 'Dia do Trabalhador', description: 'Feriado Nacional' },
-            '2023-06-01': { type: 'event-holiday', title: 'Aniversário de Itatiaia', description: 'Aniversário da Cidade' },
-            '2023-09-07': { type: 'event-holiday', title: 'Independência do Brasil', description: 'Feriado Nacional' },
-            '2023-10-07': { type: 'event-holiday', title: 'Nossa Senhora do Rosário', description: 'Feriado Regional' },
-            '2023-10-12': { type: 'event-holiday', title: 'Nossa Senhora Aparecida', description: 'Feriado Nacional' },
-            '2023-11-02': { type: 'event-holiday', title: 'Finados', description: 'Feriado Nacional' },
-            '2023-11-15': { type: 'event-holiday', title: 'Proclamação da República', description: 'Feriado Nacional' },
-            '2023-11-20': { type: 'event-holiday', title: 'Dia da Consciência Negra', description: 'Feriado Nacional' },
-            '2023-11-25': { type: 'event-holiday', title: 'Aniversário de Quatis', description: 'Aniversário da cidade de Quatis' },
-            '2023-11-30': { type: 'event-folha', title: '1ª Parcela 13º', description: 'Pagamento da primeira parcela do décimo terceiro salário' },
-            '2023-12-20': { type: 'event-folha', title: '2ª Parcela 13º', description: 'Pagamento da segunda parcela do décimo terceiro salário' },
-            '2023-12-25': { type: 'event-holiday', title: 'Natal', description: 'Feriado Nacional' },
-            
-            // 2024 holidays
-            '2024-01-01': { type: 'event-holiday', title: 'Confraternização Universal', description: 'Feriado Nacional' },
-            '2024-02-12': { type: 'event-holiday', title: 'Carnaval', description: 'Feriado Nacional (Segunda-feira)' },
-            '2024-02-13': { type: 'event-holiday', title: 'Carnaval', description: 'Feriado Nacional (Terça-feira)' },
-            '2024-03-19': { type: 'event-holiday', title: 'Dia de São José', description: 'Padroeiro de Itatiaia' },
-            '2024-03-29': { type: 'event-holiday', title: 'Sexta-feira Santa', description: 'Feriado Nacional' },
-            '2024-04-21': { type: 'event-holiday', title: 'Tiradentes', description: 'Feriado Nacional' },
-            '2024-04-23': { type: 'event-holiday', title: 'Dia de São Jorge', description: 'Feriado Regional' },
-            '2024-05-01': { type: 'event-holiday', title: 'Dia do Trabalhador', description: 'Feriado Nacional' },
-            '2024-06-01': { type: 'event-holiday', title: 'Aniversário de Itatiaia', description: 'Aniversário da Cidade' },
-            '2024-09-07': { type: 'event-holiday', title: 'Independência do Brasil', description: 'Feriado Nacional' },
-            '2024-10-07': { type: 'event-holiday', title: 'Nossa Senhora do Rosário', description: 'Feriado Regional' },
-            '2024-10-12': { type: 'event-holiday', title: 'Nossa Senhora Aparecida', description: 'Feriado Nacional' },
-            '2024-11-02': { type: 'event-holiday', title: 'Finados', description: 'Feriado Nacional' },
-            '2024-11-15': { type: 'event-holiday', title: 'Proclamação da República', description: 'Feriado Nacional' },
-            '2024-11-20': { type: 'event-holiday', title: 'Dia da Consciência Negra', description: 'Feriado Nacional' },
-            '2024-11-25': { type: 'event-holiday', title: 'Aniversário de Quatis', description: 'Aniversário da cidade de Quatis' },
-            '2024-11-30': { type: 'event-folha', title: '1ª Parcela 13º', description: 'Pagamento da primeira parcela do décimo terceiro salário' },
-            '2024-12-20': { type: 'event-folha', title: '2ª Parcela 13º', description: 'Pagamento da segunda parcela do décimo terceiro salário' },
-            '2024-12-25': { type: 'event-holiday', title: 'Natal', description: 'Feriado Nacional' },
-            
-            // 2025 holidays
-            '2025-01-01': { type: 'event-holiday', title: 'Confraternização Universal', description: 'Feriado Nacional' },
-            '2025-03-03': { type: 'event-holiday', title: 'Carnaval', description: 'Feriado Nacional (Segunda-feira)' },
-            '2025-03-04': { type: 'event-holiday', title: 'Carnaval', description: 'Feriado Nacional (Terça-feira)' },
-            '2025-03-19': { type: 'event-holiday', title: 'Dia de São José', description: 'Padroeiro de Itatiaia' },
-            '2025-04-18': { type: 'event-holiday', title: 'Sexta-feira Santa', description: 'Feriado Nacional' },
-            '2025-04-21': { type: 'event-holiday', title: 'Tiradentes', description: 'Feriado Nacional' },
-            '2025-04-23': { type: 'event-holiday', title: 'Dia de São Jorge', description: 'Feriado Regional' },
-            '2025-05-01': { type: 'event-holiday', title: 'Dia do Trabalhador', description: 'Feriado Nacional' },
-            '2025-06-01': { type: 'event-holiday', title: 'Aniversário de Itatiaia', description: 'Aniversário da Cidade' },
-            '2025-09-07': { type: 'event-holiday', title: 'Independência do Brasil', description: 'Feriado Nacional' },
-            '2025-10-07': { type: 'event-holiday', title: 'Nossa Senhora do Rosário', description: 'Feriado Regional' },
-            '2025-10-12': { type: 'event-holiday', title: 'Nossa Senhora Aparecida', description: 'Feriado Nacional' },
-            '2025-11-02': { type: 'event-holiday', title: 'Finados', description: 'Feriado Nacional' },
-            '2025-11-15': { type: 'event-holiday', title: 'Proclamação da República', description: 'Feriado Nacional' },
-            '2025-11-20': { type: 'event-holiday', title: 'Dia da Consciência Negra', description: 'Feriado Nacional' },
-            '2025-11-25': { type: 'event-holiday', title: 'Aniversário de Quatis', description: 'Aniversário da cidade de Quatis' },
-            '2025-11-30': { type: 'event-folha', title: '1ª Parcela 13º', description: 'Pagamento da primeira parcela do décimo terceiro salário' },
-            '2025-12-20': { type: 'event-folha', title: '2ª Parcela 13º', description: 'Pagamento da segunda parcela do décimo terceiro salário' },
-            '2025-12-25': { type: 'event-holiday', title: 'Natal', description: 'Feriado Nacional' },
-            
-            // 2026 holidays
-            '2026-01-01': { type: 'event-holiday', title: 'Confraternização Universal', description: 'Feriado Nacional' },
-            '2026-02-16': { type: 'event-holiday', title: 'Carnaval', description: 'Feriado Nacional (Segunda-feira)' },
-            '2026-02-17': { type: 'event-holiday', title: 'Carnaval', description: 'Feriado Nacional (Terça-feira)' },
-            '2026-03-19': { type: 'event-holiday', title: 'Dia de São José', description: 'Padroeiro de Itatiaia' },
-            '2026-04-03': { type: 'event-holiday', title: 'Sexta-feira Santa', description: 'Feriado Nacional' },
-            '2026-04-21': { type: 'event-holiday', title: 'Tiradentes', description: 'Feriado Nacional' },
-            '2026-04-23': { type: 'event-holiday', title: 'Dia de São Jorge', description: 'Feriado Regional' },
-            '2026-05-01': { type: 'event-holiday', title: 'Dia do Trabalhador', description: 'Feriado Nacional' },
-            '2026-06-01': { type: 'event-holiday', title: 'Aniversário de Itatiaia', description: 'Aniversário da Cidade' },
-            '2026-09-07': { type: 'event-holiday', title: 'Independência do Brasil', description: 'Feriado Nacional' },
-            '2026-10-07': { type: 'event-holiday', title: 'Nossa Senhora do Rosário', description: 'Feriado Regional' },
-            '2026-10-12': { type: 'event-holiday', title: 'Nossa Senhora Aparecida', description: 'Feriado Nacional' },
-            '2026-11-02': { type: 'event-holiday', title: 'Finados', description: 'Feriado Nacional' },
-            '2026-11-15': { type: 'event-holiday', title: 'Proclamação da República', description: 'Feriado Nacional' },
-            '2026-11-20': { type: 'event-holiday', title: 'Dia da Consciência Negra', description: 'Feriado Nacional' },
-            '2026-11-25': { type: 'event-holiday', title: 'Aniversário de Quatis', description: 'Aniversário da cidade de Quatis' },
-            '2026-11-30': { type: 'event-folha', title: '1ª Parcela 13º', description: 'Pagamento da primeira parcela do décimo terceiro salário' },
-            '2026-12-20': { type: 'event-folha', title: '2ª Parcela 13º', description: 'Pagamento da segunda parcela do décimo terceiro salário' },
-            '2026-12-25': { type: 'event-holiday', title: 'Natal', description: 'Feriado Nacional' },
-            
-            // 2027 holidays
-            '2027-01-01': { type: 'event-holiday', title: 'Confraternização Universal', description: 'Feriado Nacional' },
-            '2027-02-08': { type: 'event-holiday', title: 'Carnaval', description: 'Feriado Nacional (Segunda-feira)' },
-            '2027-02-09': { type: 'event-holiday', title: 'Carnaval', description: 'Feriado Nacional (Terça-feira)' },
-            '2027-03-19': { type: 'event-holiday', title: 'Dia de São José', description: 'Padroeiro de Itatiaia' },
-            '2027-03-26': { type: 'event-holiday', title: 'Sexta-feira Santa', description: 'Feriado Nacional' },
-            '2027-04-21': { type: 'event-holiday', title: 'Tiradentes', description: 'Feriado Nacional' },
-            '2027-04-23': { type: 'event-holiday', title: 'Dia de São Jorge', description: 'Feriado Regional' },
-            '2027-05-01': { type: 'event-holiday', title: 'Dia do Trabalhador', description: 'Feriado Nacional' },
-            '2027-06-01': { type: 'event-holiday', title: 'Aniversário de Itatiaia', description: 'Aniversário da Cidade' },
-            '2027-09-07': { type: 'event-holiday', title: 'Independência do Brasil', description: 'Feriado Nacional' },
-            '2027-10-07': { type: 'event-holiday', title: 'Nossa Senhora do Rosário', description: 'Feriado Regional' },
-            '2027-10-12': { type: 'event-holiday', title: 'Nossa Senhora Aparecida', description: 'Feriado Nacional' },
-            '2027-11-02': { type: 'event-holiday', title: 'Finados', description: 'Feriado Nacional' },
-            '2027-11-15': { type: 'event-holiday', title: 'Proclamação da República', description: 'Feriado Nacional' },
-            '2027-11-20': { type: 'event-holiday', title: 'Dia da Consciência Negra', description: 'Feriado Nacional' },
-            '2027-11-25': { type: 'event-holiday', title: 'Aniversário de Quatis', description: 'Aniversário da cidade de Quatis' },
-            '2027-11-30': { type: 'event-folha', title: '1ª Parcela 13º', description: 'Pagamento da primeira parcela do décimo terceiro salário' },
-            '2027-12-20': { type: 'event-folha', title: '2ª Parcela 13º', description: 'Pagamento da segunda parcela do décimo terceiro salário' },
-            '2027-12-25': { type: 'event-holiday', title: 'Natal', description: 'Feriado Nacional' }
-        };
-
-        function generateCalendar() {
-            const calendarGrid = document.getElementById('calendarGrid');
-            calendarGrid.innerHTML = '';
-
-            for (let month = 0; month < 12; month++) {
-                const monthDiv = document.createElement('div');
-                monthDiv.className = 'rounded-2xl shadow-lg overflow-hidden month-card';
-                
-                const daysInMonth = new Date(currentYear, month + 1, 0).getDate();
-                const firstDay = new Date(currentYear, month, 1).getDay();
-                
-                let monthHTML = `
-                    <div class="month-header text-white p-4 relative">
-                        <h3 class="text-xl font-bold relative z-10">${months[month]} ${currentYear}</h3>
-                    </div>
-                    <div class="p-4">
-                        <div class="grid grid-cols-7 gap-1 mb-2">
-                            <div class="text-center text-xs font-semibold p-1" style="color: var(--text-secondary);">Dom</div>
-                            <div class="text-center text-xs font-semibold p-1" style="color: var(--text-secondary);">Seg</div>
-                            <div class="text-center text-xs font-semibold p-1" style="color: var(--text-secondary);">Ter</div>
-                            <div class="text-center text-xs font-semibold p-1" style="color: var(--text-secondary);">Qua</div>
-                            <div class="text-center text-xs font-semibold p-1" style="color: var(--text-secondary);">Qui</div>
-                            <div class="text-center text-xs font-semibold p-1" style="color: var(--text-secondary);">Sex</div>
-                            <div class="text-center text-xs font-semibold p-1" style="color: var(--text-secondary);">Sáb</div>
-                        </div>
-                        <div class="grid grid-cols-7 gap-1">
-                `;
-
-                // Empty cells for days before month starts
-                for (let i = 0; i < firstDay; i++) {
-                    monthHTML += '<div class="h-12"></div>';
-                }
-
-                // Days of the month
-                for (let day = 1; day <= daysInMonth; day++) {
-                    const dateStr = `${currentYear}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                    const events = getEventsForDay(day, month + 1);
-                    const isToday = isCurrentDate(day, month);
-                    
-                    // Apply filters
-                    let shouldShow = activeFilters.includes('all');
-                    if (!shouldShow) {
-                        const hasNote = userNotes[dateStr];
-                        const hasBirthday = userBirthdays[dateStr];
-                        const isHoliday = nationalHolidays[dateStr];
-                        const hasFiscalEvent = events.some(e => !e.type.includes('holiday'));
-                        
-                        shouldShow = (activeFilters.includes('notes') && hasNote) ||
-                                   (activeFilters.includes('birthdays') && hasBirthday) ||
-                                   (activeFilters.includes('holidays') && isHoliday) ||
-                                   (activeFilters.includes('fiscal') && hasFiscalEvent);
-                    }
-                    
-                    let dayClass = 'calendar-day h-12 rounded-lg cursor-pointer flex flex-col items-center justify-center text-xs relative transition-all duration-300';
-                    const isHoliday = nationalHolidays[dateStr];
-                    
-                    if (isToday) {
-                        dayClass += ' today';
-                    } else if (isHoliday) {
-                        dayClass += ' holiday-day font-semibold';
-                    } else {
-                        dayClass += ' hover:scale-105';
-                        dayClass += ` border border-opacity-20`;
-                    }
-                    
-                    // Add theme-aware styling
-                    if (!isToday && !isHoliday) {
-                        dayClass += ` hover:shadow-lg`;
-                    }
-
-                    const hasNote = userNotes[dateStr];
-                    const hasBirthday = userBirthdays[dateStr];
-                    
-                    // Enhanced indicators
-                    const noteIndicator = hasNote ? '<div class="absolute top-1 right-1 w-3 h-3 bg-yellow-500 rounded-full shadow-lg animate-pulse"></div>' : '';
-                    const birthdayIndicator = hasBirthday ? '<div class="absolute top-1 left-1 w-3 h-3 bg-orange-500 rounded-full shadow-lg animate-pulse"></div>' : '';
-                    
-                    // Dim filtered out days
-                    if (!shouldShow) {
-                        dayClass += ' opacity-30';
-                    }
-                    
-                    monthHTML += `
-                        <div class="${dayClass}" onclick="showDayOptions('${dateStr}', ${day}, '${months[month]}')" 
-                             style="background: var(--bg-secondary); border-color: var(--border-color); color: var(--text-primary);">
-                            <span class="font-semibold relative z-10">${day}</span>
-                            <div class="flex flex-wrap justify-center mt-1 gap-1">
-                                ${events.map(event => `<div class="event-indicator ${event.type}"></div>`).join('')}
-                                ${hasBirthday ? '<div class="event-indicator event-birthday"></div>' : ''}
-                            </div>
-                            ${noteIndicator}
-                            ${birthdayIndicator}
-                        </div>
-                    `;
-                }
-
-                monthHTML += '</div></div>';
-                monthDiv.innerHTML = monthHTML;
-                calendarGrid.appendChild(monthDiv);
-            }
-            
-            // Update statistics after generating calendar
-            updateStatistics();
+        function changeYear(direction) {
+            currentYear += direction;
+            updateYearDisplay();
+            generateCalendar();
         }
 
         function updateYearDisplay() {
@@ -2409,665 +1578,423 @@
             document.getElementById('nextYear').textContent = currentYear + 1;
         }
 
+        function generateCalendar() {
+            const calendarGrid = document.getElementById('calendarGrid');
+            calendarGrid.innerHTML = '';
+            
+            for (let month = 0; month < 12; month++) {
+                const monthCard = createMonthCard(month);
+                calendarGrid.appendChild(monthCard);
+            }
+        }
+
+        function createMonthCard(monthIndex) {
+            const monthCard = document.createElement('div');
+            monthCard.className = 'month-card rounded-2xl shadow-lg overflow-hidden';
+            
+            const daysInMonth = new Date(currentYear, monthIndex + 1, 0).getDate();
+            const firstDay = new Date(currentYear, monthIndex, 1).getDay();
+            
+            let monthHTML = `
+                <div class="month-header text-white p-4 text-center">
+                    <h3 class="text-xl font-bold">${months[monthIndex]}</h3>
+                    <p class="text-sm opacity-90">${currentYear}</p>
+                </div>
+                <div class="p-4">
+                    <div class="grid grid-cols-7 gap-1 mb-2">
+                        <div class="text-xs font-semibold text-center p-1" style="color: var(--text-secondary);">Dom</div>
+                        <div class="text-xs font-semibold text-center p-1" style="color: var(--text-secondary);">Seg</div>
+                        <div class="text-xs font-semibold text-center p-1" style="color: var(--text-secondary);">Ter</div>
+                        <div class="text-xs font-semibold text-center p-1" style="color: var(--text-secondary);">Qua</div>
+                        <div class="text-xs font-semibold text-center p-1" style="color: var(--text-secondary);">Qui</div>
+                        <div class="text-xs font-semibold text-center p-1" style="color: var(--text-secondary);">Sex</div>
+                        <div class="text-xs font-semibold text-center p-1" style="color: var(--text-secondary);">Sáb</div>
+                    </div>
+                    <div class="grid grid-cols-7 gap-1">
+            `;
+            
+            // Empty cells for days before month starts
+            for (let i = 0; i < firstDay; i++) {
+                monthHTML += '<div class="h-12"></div>';
+            }
+            
+            // Days of the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dateStr = `${currentYear}-${String(monthIndex + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                const isToday = isDateToday(currentYear, monthIndex, day);
+                const isHoliday = nationalHolidays[dateStr];
+                const events = getEventsForDay(day, monthIndex + 1);
+                const hasNote = userNotes[dateStr];
+                const hasBirthday = userBirthdays[dateStr];
+                
+                let dayClasses = 'calendar-day h-12 rounded-lg flex flex-col items-center justify-center text-sm font-medium cursor-pointer relative';
+                
+                if (isToday) {
+                    dayClasses += ' today';
+                } else if (isHoliday) {
+                    dayClasses += ' holiday-day';
+                } else {
+                    dayClasses += ' hover:bg-opacity-80';
+                    dayClasses += ` text-gray-700`;
+                }
+                
+                monthHTML += `
+                    <div class="${dayClasses}" onclick="openDayModal(${day}, ${monthIndex + 1}, '${dateStr}')" style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary);">
+                        <span class="text-xs">${day}</span>
+                        <div class="flex flex-wrap justify-center mt-1">
+                `;
+                
+                // Add event indicators
+                events.forEach(event => {
+                    if (shouldShowEvent(event.type)) {
+                        monthHTML += `<div class="event-indicator ${event.type}" title="${event.title}"></div>`;
+                    }
+                });
+                
+                // Add user content indicators
+                if (hasNote && shouldShowEvent('notes')) {
+                    monthHTML += '<div class="event-indicator bg-yellow-500" title="Observação"></div>';
+                }
+                
+                if (hasBirthday && shouldShowEvent('birthdays')) {
+                    monthHTML += '<div class="event-indicator event-birthday" title="Aniversário"></div>';
+                }
+                
+                monthHTML += '</div></div>';
+            }
+            
+            monthHTML += '</div></div>';
+            monthCard.innerHTML = monthHTML;
+            
+            return monthCard;
+        }
+
+        function shouldShowEvent(eventType) {
+            if (activeFilters.includes('all')) return true;
+            
+            if (eventType.includes('event-') && activeFilters.includes('fiscal')) return true;
+            if (eventType === 'event-holiday' && activeFilters.includes('holidays')) return true;
+            if (eventType === 'event-birthday' && activeFilters.includes('birthdays')) return true;
+            if (eventType === 'notes' && activeFilters.includes('notes')) return true;
+            if (eventType === 'birthdays' && activeFilters.includes('birthdays')) return true;
+            
+            return false;
+        }
+
+        function isDateToday(year, month, day) {
+            const today = new Date();
+            return year === today.getFullYear() && 
+                   month === today.getMonth() && 
+                   day === today.getDate();
+        }
+
         function getEventsForDay(day, month) {
             const events = [];
-            const dateStr = `${currentYear}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
             
-            // Check special events
-            if (specialEvents[dateStr]) {
-                events.push(specialEvents[dateStr]);
-            }
-            
-            // Check national holidays
-            if (nationalHolidays[dateStr]) {
-                events.push(nationalHolidays[dateStr]);
-            }
-            
-            // Check recurring fiscal events
-            Object.values(fiscalEvents).forEach(event => {
-                if (event.day === day) {
+            // Check fiscal events
+            Object.keys(fiscalEvents).forEach(eventKey => {
+                const event = fiscalEvents[eventKey];
+                if (event.days[month - 1] === day) {
                     events.push(event);
                 }
             });
             
+            // Check holidays
+            const dateStr = `${currentYear}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            if (nationalHolidays[dateStr]) {
+                events.push({
+                    title: 'Feriado',
+                    description: nationalHolidays[dateStr],
+                    type: 'event-holiday'
+                });
+            }
+            
             return events;
         }
 
-        function isCurrentDate(day, month) {
-            const today = new Date();
-            return today.getDate() === day && 
-                   today.getMonth() === month && 
-                   today.getFullYear() === currentYear;
-        }
-
-        function showDayOptions(dateStr, day, monthName) {
-            const events = getEventsForDay(day, parseInt(dateStr.split('-')[1]));
+        function openDayModal(day, month, dateStr) {
+            const events = getEventsForDay(day, month);
             const hasNote = userNotes[dateStr];
             const hasBirthday = userBirthdays[dateStr];
+            const isHoliday = nationalHolidays[dateStr];
             
-            // If there are events, show them first
-            if (events.length > 0) {
-                showEvents(dateStr, day, monthName, events);
+            if (events.length === 0 && !hasNote && !hasBirthday && !isHoliday) {
+                // Open notes modal for empty days
+                openNotesModal(dateStr);
                 return;
             }
             
-            // If no events but has note or birthday, show options
-            if (hasNote || hasBirthday) {
-                showDayOptionsMenu(dateStr, day, monthName);
-                return;
-            }
-            
-            // If no events, notes or birthdays, show options menu
-            showDayOptionsMenu(dateStr, day, monthName);
-        }
-
-        function showDayOptionsMenu(dateStr, day, monthName) {
             const modal = document.getElementById('eventModal');
-            const modalContent = modal.querySelector('.modal-content');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalContentDiv = document.getElementById('modalContent');
+            const title = document.getElementById('modalTitle');
+            const content = document.getElementById('modalContent');
             
-            modalTitle.textContent = `${day} de ${monthName} ${currentYear}`;
+            title.textContent = `${day} de ${months[month - 1]}`;
             
-            let content = '<div class="space-y-3">';
+            let modalHTML = '';
             
-            // Show existing note if any
-            if (userNotes[dateStr]) {
-                content += `
-                    <div class="border-l-4 border-yellow-500 pl-4 bg-yellow-50 p-3 rounded">
-                        <h4 class="font-semibold text-gray-800">📝 Sua Observação</h4>
-                        <p class="text-sm text-gray-600">${userNotes[dateStr]}</p>
+            // Show holiday
+            if (isHoliday) {
+                modalHTML += `
+                    <div class="mb-4 p-3 bg-red-50 border-l-4 border-red-500 rounded">
+                        <h4 class="font-bold text-red-800">🎉 Feriado Nacional</h4>
+                        <p class="text-red-700">${isHoliday}</p>
                     </div>
                 `;
             }
             
-            // Show existing birthday if any
-            if (userBirthdays[dateStr]) {
-                content += `
-                    <div class="border-l-4 border-orange-500 pl-4 bg-orange-50 p-3 rounded">
-                        <h4 class="font-semibold text-gray-800">🎂 Aniversário</h4>
-                        <p class="text-sm text-gray-600">${userBirthdays[dateStr]}</p>
-                    </div>
-                `;
-            }
-            
-            // Add action buttons
-            content += `
-                <div class="mt-4 pt-4 border-t space-y-2">
-                    <button onclick="closeModal(); openNotesModal('${dateStr}', ${day}, '${monthName}')" 
-                            class="w-full bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg font-semibold">
-                        📝 ${userNotes[dateStr] ? 'Editar Observação' : 'Adicionar Observação'}
-                    </button>
-                    <button onclick="closeModal(); openBirthdayModal('${dateStr}', ${day}, '${monthName}')" 
-                            class="w-full bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-semibold">
-                        🎂 ${userBirthdays[dateStr] ? 'Editar Aniversário' : 'Adicionar Aniversário'}
-                    </button>
-                </div>
-            `;
-            
-            content += '</div>';
-            
-            modalContentDiv.innerHTML = content;
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            modalContent.classList.add('modal-fade-in');
-        }
-
-        function showEvents(dateStr, day, monthName, events) {
-            const modal = document.getElementById('eventModal');
-            const modalContent = modal.querySelector('.modal-content');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalContentDiv = document.getElementById('modalContent');
-            
-            modalTitle.textContent = `${day} de ${monthName} ${currentYear}`;
-            
-            let content = '<div class="space-y-3">';
+            // Show fiscal events
             events.forEach(event => {
-                content += `
-                    <div class="border-l-4 border-blue-500 pl-4">
-                        <h4 class="font-semibold text-gray-800">${event.title}</h4>
-                        <p class="text-sm text-gray-600">${event.description}</p>
+                let bgColor = 'bg-blue-50';
+                let borderColor = 'border-blue-500';
+                let textColor = 'text-blue-800';
+                
+                if (event.type === 'event-fgts') {
+                    bgColor = 'bg-red-50';
+                    borderColor = 'border-red-500';
+                    textColor = 'text-red-800';
+                } else if (event.type === 'event-inss') {
+                    bgColor = 'bg-blue-50';
+                    borderColor = 'border-blue-500';
+                    textColor = 'text-blue-800';
+                } else if (event.type === 'event-irrf') {
+                    bgColor = 'bg-green-50';
+                    borderColor = 'border-green-500';
+                    textColor = 'text-green-800';
+                }
+                
+                modalHTML += `
+                    <div class="mb-4 p-3 ${bgColor} border-l-4 ${borderColor} rounded">
+                        <h4 class="font-bold ${textColor}">📋 ${event.title}</h4>
+                        <p class="${textColor.replace('800', '700')}">${event.description}</p>
                     </div>
                 `;
             });
             
-            // Show existing note if any
-            if (userNotes[dateStr]) {
-                content += `
-                    <div class="border-l-4 border-yellow-500 pl-4 bg-yellow-50 p-3 rounded">
-                        <h4 class="font-semibold text-gray-800">📝 Sua Observação</h4>
-                        <p class="text-sm text-gray-600">${userNotes[dateStr]}</p>
+            // Show user note
+            if (hasNote) {
+                modalHTML += `
+                    <div class="mb-4 p-3 bg-yellow-50 border-l-4 border-yellow-500 rounded">
+                        <h4 class="font-bold text-yellow-800">📝 Sua Observação</h4>
+                        <p class="text-yellow-700">${hasNote}</p>
+                        <button onclick="openNotesModal('${dateStr}')" class="mt-2 text-yellow-600 hover:text-yellow-800 text-sm underline">
+                            Editar observação
+                        </button>
                     </div>
                 `;
             }
             
-            // Show existing birthday if any
-            if (userBirthdays[dateStr]) {
-                content += `
-                    <div class="border-l-4 border-orange-500 pl-4 bg-orange-50 p-3 rounded">
-                        <h4 class="font-semibold text-gray-800">🎂 Aniversário</h4>
-                        <p class="text-sm text-gray-600">${userBirthdays[dateStr]}</p>
+            // Show birthday
+            if (hasBirthday) {
+                modalHTML += `
+                    <div class="mb-4 p-3 bg-orange-50 border-l-4 border-orange-500 rounded">
+                        <h4 class="font-bold text-orange-800">🎂 Aniversário</h4>
+                        <p class="text-orange-700">${hasBirthday}</p>
+                        <button onclick="openBirthdayModal('${dateStr}')" class="mt-2 text-orange-600 hover:text-orange-800 text-sm underline">
+                            Editar aniversário
+                        </button>
                     </div>
                 `;
             }
             
             // Add action buttons
-            content += `
-                <div class="mt-4 pt-4 border-t space-y-2">
-                    <button onclick="closeModal(); openNotesModal('${dateStr}', ${day}, '${monthName}')" 
-                            class="w-full bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg font-semibold">
-                        📝 ${userNotes[dateStr] ? 'Editar Observação' : 'Adicionar Observação'}
-                    </button>
-                    <button onclick="closeModal(); openBirthdayModal('${dateStr}', ${day}, '${monthName}')" 
-                            class="w-full bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-semibold">
-                        🎂 ${userBirthdays[dateStr] ? 'Editar Aniversário' : 'Adicionar Aniversário'}
-                    </button>
+            modalHTML += `
+                <div class="mt-6 flex space-x-2">
+                    ${!hasNote ? `<button onclick="openNotesModal('${dateStr}')" class="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-300">📝 Adicionar Observação</button>` : ''}
+                    ${!hasBirthday ? `<button onclick="openBirthdayModal('${dateStr}')" class="flex-1 bg-orange-500 hover:bg-orange-600 text-white px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-300">🎂 Adicionar Aniversário</button>` : ''}
                 </div>
             `;
             
-            content += '</div>';
-            
-            modalContentDiv.innerHTML = content;
+            content.innerHTML = modalHTML;
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-            modalContent.classList.add('modal-fade-in');
         }
 
         function closeModal() {
-            const modal = document.getElementById('eventModal');
-            const modalContent = modal.querySelector('.modal-content');
-            
-            modalContent.classList.remove('modal-fade-in');
-            modalContent.classList.add('modal-fade-out');
-            
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-                modalContent.classList.remove('modal-fade-out');
-            }, 300);
+            document.getElementById('eventModal').classList.add('hidden');
+            document.getElementById('eventModal').classList.remove('flex');
         }
 
-        function openNotesModal(dateStr, day, monthName) {
+        function openNotesModal(dateStr) {
+            closeModal();
+            
             currentNoteDate = dateStr;
             const modal = document.getElementById('notesModal');
-            const modalContent = modal.querySelector('.modal-content');
-            const modalTitle = document.getElementById('notesModalTitle');
-            const noteInput = document.getElementById('noteInput');
+            const input = document.getElementById('noteInput');
             const existingNote = document.getElementById('existingNote');
             const existingNoteText = document.getElementById('existingNoteText');
             
-            modalTitle.textContent = `📝 Observações - ${day} de ${monthName} ${currentYear}`;
+            const currentNote = userNotes[dateStr];
             
-            // Load existing note if any
-            if (userNotes[dateStr]) {
-                noteInput.value = userNotes[dateStr];
-                existingNoteText.textContent = userNotes[dateStr];
+            if (currentNote) {
+                input.value = currentNote;
+                existingNoteText.textContent = currentNote;
                 existingNote.classList.remove('hidden');
             } else {
-                noteInput.value = '';
+                input.value = '';
                 existingNote.classList.add('hidden');
             }
             
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-            modalContent.classList.add('modal-fade-in');
-            
-            setTimeout(() => {
-                noteInput.focus();
-            }, 100);
+            input.focus();
         }
 
         function closeNotesModal() {
-            const modal = document.getElementById('notesModal');
-            const modalContent = modal.querySelector('.modal-content');
-            
-            modalContent.classList.remove('modal-fade-in');
-            modalContent.classList.add('modal-fade-out');
-            
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-                modalContent.classList.remove('modal-fade-out');
-            }, 300);
+            document.getElementById('notesModal').classList.add('hidden');
+            document.getElementById('notesModal').classList.remove('flex');
+            currentNoteDate = '';
         }
 
-        function openBirthdayModal(dateStr, day, monthName) {
-            currentNoteDate = dateStr; // Reuse the same variable for date tracking
+        async function saveNote() {
+            const noteText = document.getElementById('noteInput').value.trim();
+            
+            if (!noteText) {
+                alert('Por favor, digite uma observação!');
+                return;
+            }
+            
+            if (!currentNoteDate) {
+                alert('Erro: data não selecionada!');
+                return;
+            }
+            
+            const success = await saveNoteToFirestore(currentNoteDate, noteText);
+            
+            if (success) {
+                userNotes[currentNoteDate] = noteText;
+                generateCalendar();
+                updateStorageStatus();
+                closeNotesModal();
+                alert('Observação salva com sucesso! ✅');
+            } else {
+                alert('Erro ao salvar observação. Tente novamente.');
+            }
+        }
+
+        async function deleteNote() {
+            if (!currentNoteDate || !userNotes[currentNoteDate]) {
+                alert('Nenhuma observação para excluir!');
+                return;
+            }
+            
+            if (!confirm('Tem certeza que deseja excluir esta observação?')) {
+                return;
+            }
+            
+            const success = await deleteNoteFromFirestore(currentNoteDate);
+            
+            if (success) {
+                delete userNotes[currentNoteDate];
+                generateCalendar();
+                updateStorageStatus();
+                closeNotesModal();
+                alert('Observação excluída com sucesso! ✅');
+            } else {
+                alert('Erro ao excluir observação. Tente novamente.');
+            }
+        }
+
+        function openBirthdayModal(dateStr) {
+            closeModal();
+            
+            currentNoteDate = dateStr;
             const modal = document.getElementById('birthdayModal');
-            const modalContent = modal.querySelector('.modal-content');
-            const modalTitle = document.getElementById('birthdayModalTitle');
-            const birthdayInput = document.getElementById('birthdayInput');
+            const input = document.getElementById('birthdayInput');
             const existingBirthday = document.getElementById('existingBirthday');
             const existingBirthdayText = document.getElementById('existingBirthdayText');
             
-            modalTitle.textContent = `🎂 Aniversários - ${day} de ${monthName} ${currentYear}`;
+            const currentBirthday = userBirthdays[dateStr];
             
-            // Load existing birthday if any
-            if (userBirthdays[dateStr]) {
-                birthdayInput.value = userBirthdays[dateStr];
-                existingBirthdayText.textContent = userBirthdays[dateStr];
+            if (currentBirthday) {
+                input.value = currentBirthday;
+                existingBirthdayText.textContent = currentBirthday;
                 existingBirthday.classList.remove('hidden');
             } else {
-                birthdayInput.value = '';
+                input.value = '';
                 existingBirthday.classList.add('hidden');
             }
             
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-            modalContent.classList.add('modal-fade-in');
-            
-            setTimeout(() => {
-                birthdayInput.focus();
-            }, 100);
+            input.focus();
         }
 
         function closeBirthdayModal() {
-            const modal = document.getElementById('birthdayModal');
-            const modalContent = modal.querySelector('.modal-content');
-            
-            modalContent.classList.remove('modal-fade-in');
-            modalContent.classList.add('modal-fade-out');
-            
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-                modalContent.classList.remove('modal-fade-out');
-            }, 300);
+            document.getElementById('birthdayModal').classList.add('hidden');
+            document.getElementById('birthdayModal').classList.remove('flex');
+            currentNoteDate = '';
         }
 
         async function saveBirthday() {
-            const birthdayInput = document.getElementById('birthdayInput');
-            const birthdayName = birthdayInput.value.trim();
+            const birthdayName = document.getElementById('birthdayInput').value.trim();
             
-            if (birthdayName) {
-                const saveBtn = document.querySelector('button[onclick="saveBirthday()"]');
-                const originalText = saveBtn.innerHTML;
-                
-                // Show saving state
-                saveBtn.innerHTML = '🔄 Salvando...';
-                saveBtn.disabled = true;
-                
-                try {
-                    // Update local data
-                    userBirthdays[currentNoteDate] = birthdayName;
-                    
-                    // Save to Firestore
-                    const firebaseSaved = await saveBirthdayToFirestore(currentNoteDate, birthdayName);
-                    
-                    if (firebaseSaved) {
-                        // Show success
-                        saveBtn.innerHTML = '✅ Salvo!';
-                        saveBtn.classList.add('bg-green-500', 'hover:bg-green-600');
-                        saveBtn.classList.remove('bg-orange-500', 'hover:bg-orange-600');
-                        
-                        console.log('✅ Aniversário salvo e sincronizado:', currentNoteDate, '- Nome:', birthdayName);
-                        
-                        setTimeout(() => {
-                            generateCalendar();
-                            updateStorageStatus('🌐 Salvo e sincronizado em tempo real');
-                            checkDailyNotifications();
-                            closeBirthdayModal();
-                            
-                            // Reset button
-                            setTimeout(() => {
-                                if (saveBtn) {
-                                    saveBtn.innerHTML = originalText;
-                                    saveBtn.classList.remove('bg-green-500', 'hover:bg-green-600');
-                                    saveBtn.classList.add('bg-orange-500', 'hover:bg-orange-600');
-                                    saveBtn.disabled = false;
-                                }
-                            }, 100);
-                        }, 1500);
-                    } else {
-                        throw new Error('Falha ao salvar no Firestore');
-                    }
-                } catch (error) {
-                    console.error('❌ Erro ao salvar aniversário:', error);
-                    saveBtn.innerHTML = '❌ Erro ao salvar';
-                    saveBtn.classList.add('bg-red-500');
-                    setTimeout(() => {
-                        saveBtn.innerHTML = originalText;
-                        saveBtn.classList.remove('bg-red-500');
-                        saveBtn.disabled = false;
-                    }, 2000);
-                }
+            if (!birthdayName) {
+                alert('Por favor, digite o nome da pessoa!');
+                return;
+            }
+            
+            if (!currentNoteDate) {
+                alert('Erro: data não selecionada!');
+                return;
+            }
+            
+            const success = await saveBirthdayToFirestore(currentNoteDate, birthdayName);
+            
+            if (success) {
+                userBirthdays[currentNoteDate] = birthdayName;
+                generateCalendar();
+                updateStorageStatus();
+                closeBirthdayModal();
+                alert('Aniversário salvo com sucesso! 🎉');
             } else {
-                // Show error message
-                birthdayInput.classList.add('border-red-500', 'bg-red-50');
-                birthdayInput.placeholder = 'Por favor, digite o nome da pessoa...';
-                
-                setTimeout(() => {
-                    birthdayInput.classList.remove('border-red-500', 'bg-red-50');
-                    birthdayInput.placeholder = 'Digite o nome da pessoa...';
-                }, 2000);
+                alert('Erro ao salvar aniversário. Tente novamente.');
             }
         }
 
         async function deleteBirthday() {
-            const deleteBtn = document.querySelector('button[onclick="deleteBirthday()"]');
-            const originalText = deleteBtn.innerHTML;
-            const birthdayInput = document.getElementById('birthdayInput');
-            const existingBirthday = document.getElementById('existingBirthday');
-            
-            // Check if there's any birthday to delete
-            const hasStoredBirthday = userBirthdays[currentNoteDate];
-            const hasInputText = birthdayInput.value.trim();
-            
-            if (hasStoredBirthday || hasInputText) {
-                if (confirm('Tem certeza que deseja excluir este aniversário?')) {
-                    // Show deleting state
-                    deleteBtn.innerHTML = '🔄 Excluindo...';
-                    deleteBtn.disabled = true;
-                    
-                    try {
-                        // Delete from Firestore if exists
-                        if (hasStoredBirthday) {
-                            const firebaseDeleted = await deleteBirthdayFromFirestore(currentNoteDate);
-                            
-                            if (firebaseDeleted) {
-                                // Remove from local data
-                                delete userBirthdays[currentNoteDate];
-                                
-                                console.log('✅ Aniversário excluído:', currentNoteDate);
-                                
-                                // Show success message
-                                deleteBtn.innerHTML = '✅ Excluído!';
-                                deleteBtn.classList.remove('bg-red-600', 'hover:bg-red-700');
-                                deleteBtn.classList.add('bg-green-500', 'hover:bg-green-600');
-                            } else {
-                                throw new Error('Falha ao excluir do Firestore');
-                            }
-                        } else {
-                            // Just clear input if no stored birthday
-                            deleteBtn.innerHTML = '✅ Limpo!';
-                            deleteBtn.classList.remove('bg-red-600', 'hover:bg-red-700');
-                            deleteBtn.classList.add('bg-green-500', 'hover:bg-green-600');
-                        }
-                        
-                        // Clear the input field
-                        birthdayInput.value = '';
-                        
-                        // Hide existing birthday display
-                        existingBirthday.classList.add('hidden');
-                        
-                        setTimeout(() => {
-                            // Refresh calendar to remove orange indicator
-                            generateCalendar();
-                            updateStorageStatus('🌐 Sincronizado em tempo real');
-                            closeBirthdayModal();
-                            
-                            // Reset button after modal closes
-                            setTimeout(() => {
-                                if (deleteBtn) {
-                                    deleteBtn.innerHTML = originalText;
-                                    deleteBtn.classList.remove('bg-green-500', 'hover:bg-green-600');
-                                    deleteBtn.classList.add('bg-red-600', 'hover:bg-red-700');
-                                    deleteBtn.disabled = false;
-                                }
-                            }, 100);
-                        }, 1500);
-                        
-                    } catch (error) {
-                        console.error('❌ Erro ao excluir aniversário:', error);
-                        deleteBtn.innerHTML = '❌ Erro ao excluir';
-                        deleteBtn.classList.add('bg-red-500');
-                        setTimeout(() => {
-                            deleteBtn.innerHTML = originalText;
-                            deleteBtn.classList.remove('bg-red-500');
-                            deleteBtn.disabled = false;
-                        }, 2000);
-                    }
-                }
-            } else {
-                // Show message when there's no birthday to delete
-                deleteBtn.innerHTML = '❌ Nenhum aniversário';
-                deleteBtn.classList.remove('bg-red-600', 'hover:bg-red-700');
-                deleteBtn.classList.add('bg-gray-400');
-                
-                setTimeout(() => {
-                    deleteBtn.innerHTML = originalText;
-                    deleteBtn.classList.remove('bg-gray-400');
-                    deleteBtn.classList.add('bg-red-600', 'hover:bg-red-700');
-                }, 2000);
+            if (!currentNoteDate || !userBirthdays[currentNoteDate]) {
+                alert('Nenhum aniversário para excluir!');
+                return;
             }
-        }
-
-        async function saveNote() {
-            const noteInput = document.getElementById('noteInput');
-            const noteText = noteInput.value.trim();
             
-            if (noteText) {
-                const saveBtn = document.querySelector('button[onclick="saveNote()"]');
-                const originalText = saveBtn.innerHTML;
-                
-                // Show saving state
-                saveBtn.innerHTML = '🔄 Salvando...';
-                saveBtn.disabled = true;
-                
-                try {
-                    // Update local data
-                    userNotes[currentNoteDate] = noteText;
-                    
-                    // Save to Firestore
-                    const firebaseSaved = await saveNoteToFirestore(currentNoteDate, noteText);
-                    
-                    if (firebaseSaved) {
-                        // Show success
-                        saveBtn.innerHTML = '✅ Salvo!';
-                        saveBtn.classList.add('bg-green-500', 'hover:bg-green-600');
-                        saveBtn.classList.remove('bg-yellow-500', 'hover:bg-yellow-600');
-                        
-                        console.log('✅ Observação salva e sincronizada:', currentNoteDate, '- Conteúdo:', noteText);
-                        
-                        setTimeout(() => {
-                            generateCalendar();
-                            updateStorageStatus('🌐 Salvo e sincronizado em tempo real');
-                            checkDailyNotifications();
-                            closeNotesModal();
-                            
-                            // Reset button
-                            setTimeout(() => {
-                                if (saveBtn) {
-                                    saveBtn.innerHTML = originalText;
-                                    saveBtn.classList.remove('bg-green-500', 'hover:bg-green-600');
-                                    saveBtn.classList.add('bg-yellow-500', 'hover:bg-yellow-600');
-                                    saveBtn.disabled = false;
-                                }
-                            }, 100);
-                        }, 1500);
-                    } else {
-                        throw new Error('Falha ao salvar no Firestore');
-                    }
-                } catch (error) {
-                    console.error('❌ Erro ao salvar nota:', error);
-                    saveBtn.innerHTML = '❌ Erro ao salvar';
-                    saveBtn.classList.add('bg-red-500');
-                    setTimeout(() => {
-                        saveBtn.innerHTML = originalText;
-                        saveBtn.classList.remove('bg-red-500');
-                        saveBtn.disabled = false;
-                    }, 2000);
-                }
-            } else {
-                // Show error message
-                noteInput.classList.add('border-red-500', 'bg-red-50');
-                noteInput.placeholder = 'Por favor, digite uma observação...';
-                
-                setTimeout(() => {
-                    noteInput.classList.remove('border-red-500', 'bg-red-50');
-                    noteInput.placeholder = 'Digite sua observação aqui...';
-                }, 2000);
+            if (!confirm('Tem certeza que deseja excluir este aniversário?')) {
+                return;
             }
-        }
-
-        async function deleteNote() {
-            const deleteBtn = document.querySelector('button[onclick="deleteNote()"]');
-            const originalText = deleteBtn.innerHTML;
-            const noteInput = document.getElementById('noteInput');
-            const existingNote = document.getElementById('existingNote');
             
-            // Check if there's any note to delete
-            const hasStoredNote = userNotes[currentNoteDate];
-            const hasInputText = noteInput.value.trim();
+            const success = await deleteBirthdayFromFirestore(currentNoteDate);
             
-            if (hasStoredNote || hasInputText) {
-                if (confirm('Tem certeza que deseja excluir esta observação?')) {
-                    // Show deleting state
-                    deleteBtn.innerHTML = '🔄 Excluindo...';
-                    deleteBtn.disabled = true;
-                    
-                    try {
-                        // Delete from Firestore if exists
-                        if (hasStoredNote) {
-                            const firebaseDeleted = await deleteNoteFromFirestore(currentNoteDate);
-                            
-                            if (firebaseDeleted) {
-                                // Remove from local data
-                                delete userNotes[currentNoteDate];
-                                
-                                console.log('✅ Observação excluída:', currentNoteDate);
-                                
-                                // Show success message
-                                deleteBtn.innerHTML = '✅ Excluído!';
-                                deleteBtn.classList.remove('bg-red-600', 'hover:bg-red-700');
-                                deleteBtn.classList.add('bg-green-500', 'hover:bg-green-600');
-                            } else {
-                                throw new Error('Falha ao excluir do Firestore');
-                            }
-                        } else {
-                            // Just clear input if no stored note
-                            deleteBtn.innerHTML = '✅ Limpo!';
-                            deleteBtn.classList.remove('bg-red-600', 'hover:bg-red-700');
-                            deleteBtn.classList.add('bg-green-500', 'hover:bg-green-600');
-                        }
-                        
-                        // Clear the input field
-                        noteInput.value = '';
-                        
-                        // Hide existing note display
-                        existingNote.classList.add('hidden');
-                        
-                        setTimeout(() => {
-                            // Refresh calendar to remove orange indicator
-                            generateCalendar();
-                            updateStorageStatus('🌐 Sincronizado em tempo real');
-                            closeNotesModal();
-                            
-                            // Reset button after modal closes
-                            setTimeout(() => {
-                                if (deleteBtn) {
-                                    deleteBtn.innerHTML = originalText;
-                                    deleteBtn.classList.remove('bg-green-500', 'hover:bg-green-600');
-                                    deleteBtn.classList.add('bg-red-600', 'hover:bg-red-700');
-                                    deleteBtn.disabled = false;
-                                }
-                            }, 100);
-                        }, 1500);
-                        
-                    } catch (error) {
-                        console.error('❌ Erro ao excluir nota:', error);
-                        deleteBtn.innerHTML = '❌ Erro ao excluir';
-                        deleteBtn.classList.add('bg-red-500');
-                        setTimeout(() => {
-                            deleteBtn.innerHTML = originalText;
-                            deleteBtn.classList.remove('bg-red-500');
-                            deleteBtn.disabled = false;
-                        }, 2000);
-                    }
-                }
-            } else {
-                // Show message when there's no note to delete
-                deleteBtn.innerHTML = '❌ Nenhuma observação';
-                deleteBtn.classList.remove('bg-red-600', 'hover:bg-red-700');
-                deleteBtn.classList.add('bg-gray-400');
-                
-                setTimeout(() => {
-                    deleteBtn.innerHTML = originalText;
-                    deleteBtn.classList.remove('bg-gray-400');
-                    deleteBtn.classList.add('bg-red-600', 'hover:bg-red-700');
-                }, 2000);
-            }
-        }
-
-        function changeYear(direction) {
-            const calendarGrid = document.getElementById('calendarGrid');
-            const currentYearElement = document.getElementById('currentYear');
-            const prevYearElement = document.getElementById('prevYear');
-            const nextYearElement = document.getElementById('nextYear');
-            
-            // Add fade out animation to calendar
-            calendarGrid.classList.add('calendar-fade-out');
-            
-            // Add bounce animation to year
-            currentYearElement.classList.add('year-bounce');
-            
-            setTimeout(() => {
-                currentYear += direction;
-                currentYearElement.textContent = currentYear;
-                prevYearElement.textContent = currentYear - 1;
-                nextYearElement.textContent = currentYear + 1;
-                
+            if (success) {
+                delete userBirthdays[currentNoteDate];
                 generateCalendar();
-                
-                // Add fade in animation to calendar
-                calendarGrid.classList.remove('calendar-fade-out');
-                calendarGrid.classList.add('calendar-fade-in');
-                
-                setTimeout(() => {
-                    currentYearElement.classList.remove('year-bounce');
-                    calendarGrid.classList.remove('calendar-fade-in');
-                }, 300);
-            }, 300);
+                updateStorageStatus();
+                closeBirthdayModal();
+                alert('Aniversário excluído com sucesso! ✅');
+            } else {
+                alert('Erro ao excluir aniversário. Tente novamente.');
+            }
         }
 
-        // Initialize Firebase Auth when page loads
-        (() => {
-            console.log('🚀 Inicializando sistema...');
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Aplicação iniciada');
             
             // Initialize Firebase Auth
-            setTimeout(() => {
-                initFirebaseAuth();
-            }, 1000);
-        })();
-        
-        // Add keyboard support for login forms
-        document.getElementById('loginPassword').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                signInWithEmail();
+            initFirebaseAuth();
+            
+            // Initialize Lucide icons
+            lucide.createIcons();
+            
+            // Update year display
+            updateYearDisplay();
+            
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                toggleTheme();
             }
-        });
-        
-        document.getElementById('confirmPassword').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                createAccountWithEmail();
-            }
-        });
-
-        // Close modal when clicking outside
-        document.getElementById('eventModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
-
-        document.getElementById('notesModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeNotesModal();
-            }
-        });
-
-        document.getElementById('birthdayModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeBirthdayModal();
-            }
-        });
-        
-        // Add keyboard support for birthday input
-        document.getElementById('birthdayInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                saveBirthday();
-            }
+            
+            console.log('✅ Inicialização completa');
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96c0ef24b68d5218',t:'MTc1NDY3NjI0NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96c0f97e76499414',t:'MTc1NDY3NjY2OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
