@@ -180,30 +180,76 @@
         }
         
         .calendar-day {
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
         }
         
+        .calendar-day::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .calendar-day:hover::before {
+            left: 100%;
+        }
+        
         .calendar-day:hover {
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            transform: translateY(-6px) scale(1.08) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25), 0 0 20px rgba(102, 126, 234, 0.3);
             z-index: 10;
+            border-color: rgba(102, 126, 234, 0.5) !important;
         }
 
         .calendar-day.today {
             background: var(--primary-gradient);
             color: white;
             font-weight: bold;
-            animation: pulse 2s infinite;
+            animation: todayPulse 3s infinite, todayGlow 2s infinite alternate;
+            transform: scale(1.02);
         }
 
-        @keyframes pulse {
+        @keyframes todayPulse {
             0%, 100% { 
-                box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+                box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.8);
             }
             50% { 
-                box-shadow: 0 0 0 10px rgba(102, 126, 234, 0);
+                box-shadow: 0 0 0 15px rgba(102, 126, 234, 0);
+            }
+        }
+
+        @keyframes todayGlow {
+            0% { 
+                filter: brightness(1) saturate(1);
+            }
+            100% { 
+                filter: brightness(1.2) saturate(1.3);
+            }
+        }
+
+        .event-indicator {
+            animation: eventBounce 0.6s ease-out;
+            animation-delay: calc(var(--delay, 0) * 0.1s);
+        }
+
+        @keyframes eventBounce {
+            0% { 
+                transform: scale(0) rotate(180deg);
+                opacity: 0;
+            }
+            50% { 
+                transform: scale(1.3) rotate(90deg);
+                opacity: 0.8;
+            }
+            100% { 
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
             }
         }
         
@@ -237,11 +283,25 @@
         }
         
         .month-card {
-            transition: all 0.4s ease;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             position: relative;
             overflow: hidden;
+            animation: slideInUp 0.6s ease-out;
+            animation-delay: calc(var(--month-index, 0) * 0.1s);
+            animation-fill-mode: both;
+        }
+
+        @keyframes slideInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         .month-card::before {
@@ -253,7 +313,20 @@
             height: 4px;
             background: var(--primary-gradient);
             transform: scaleX(0);
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .month-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.6s ease;
+            pointer-events: none;
         }
 
         [data-theme="light"] .month-card::before {
@@ -263,11 +336,16 @@
         .month-card:hover::before {
             transform: scaleX(1);
         }
+
+        .month-card:hover::after {
+            transform: scale(1);
+        }
         
         .month-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            transform: translateY(-12px) scale(1.03) rotateY(2deg);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2), 0 0 30px rgba(102, 126, 234, 0.2);
             z-index: 5;
+            border-color: rgba(102, 126, 234, 0.4);
         }
         
         .month-header {
@@ -304,49 +382,121 @@
             z-index: 40;
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 12px;
+            border-radius: 16px;
+            padding: 16px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-            transition: all 0.4s ease;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: floatIn 0.8s ease-out;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes floatIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-50%) translateX(100px) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(-50%) translateX(0) scale(1);
+            }
         }
 
         .floating-nav:hover {
-            transform: translateY(-50%) scale(1.05);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            transform: translateY(-50%) scale(1.08) rotateY(5deg);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.25), 0 0 40px rgba(102, 126, 234, 0.3);
         }
 
         .floating-nav button {
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floating-nav button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.3) 0%, transparent 70%);
+            transition: all 0.4s ease;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+
+        .floating-nav button:hover::before {
+            width: 100px;
+            height: 100px;
         }
 
         .floating-nav button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.25);
         }
 
         .filter-chip {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 16px;
+            padding: 10px 18px;
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
-            border-radius: 20px;
+            border-radius: 25px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
+            animation: chipSlideIn 0.5s ease-out;
+            animation-delay: calc(var(--chip-index, 0) * 0.1s);
+            animation-fill-mode: both;
+        }
+
+        @keyframes chipSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .filter-chip::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .filter-chip:hover::before {
+            left: 100%;
         }
 
         .filter-chip:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transform: translateY(-4px) scale(1.08);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2), 0 0 20px rgba(102, 126, 234, 0.3);
         }
 
         .filter-chip.active {
             background: var(--primary-gradient);
             color: white;
             border-color: transparent;
+            animation: activeChipPulse 2s infinite;
+        }
+
+        @keyframes activeChipPulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 8px rgba(102, 126, 234, 0);
+            }
         }
 
         /* Mobile optimizations */
@@ -508,23 +658,23 @@
         <!-- Event Filters -->
         <div class="mb-8">
             <div class="flex flex-wrap gap-3 justify-center">
-                <div class="filter-chip active" onclick="toggleFilter('all')" data-filter="all">
+                <div class="filter-chip active" onclick="toggleFilter('all')" data-filter="all" style="--chip-index: 0">
                     <i data-lucide="calendar" class="w-4 h-4"></i>
                     <span>Todos</span>
                 </div>
-                <div class="filter-chip" onclick="toggleFilter('fiscal')" data-filter="fiscal">
+                <div class="filter-chip" onclick="toggleFilter('fiscal')" data-filter="fiscal" style="--chip-index: 1">
                     <i data-lucide="file-text" class="w-4 h-4"></i>
                     <span>Fiscal</span>
                 </div>
-                <div class="filter-chip" onclick="toggleFilter('holidays')" data-filter="holidays">
+                <div class="filter-chip" onclick="toggleFilter('holidays')" data-filter="holidays" style="--chip-index: 2">
                     <i data-lucide="gift" class="w-4 h-4"></i>
                     <span>Feriados</span>
                 </div>
-                <div class="filter-chip" onclick="toggleFilter('birthdays')" data-filter="birthdays">
+                <div class="filter-chip" onclick="toggleFilter('birthdays')" data-filter="birthdays" style="--chip-index: 3">
                     <i data-lucide="cake" class="w-4 h-4"></i>
                     <span>Aniversários</span>
                 </div>
-                <div class="filter-chip" onclick="toggleFilter('notes')" data-filter="notes">
+                <div class="filter-chip" onclick="toggleFilter('notes')" data-filter="notes" style="--chip-index: 4">
                     <i data-lucide="sticky-note" class="w-4 h-4"></i>
                     <span>Observações</span>
                 </div>
@@ -776,17 +926,74 @@
             'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
         ];
 
-        // National holidays
-        const nationalHolidays = {
-            '2025-01-01': 'Confraternização Universal',
-            '2025-04-21': 'Tiradentes',
-            '2025-05-01': 'Dia do Trabalhador',
-            '2025-09-07': 'Independência do Brasil',
-            '2025-10-12': 'Nossa Senhora Aparecida',
-            '2025-11-02': 'Finados',
-            '2025-11-15': 'Proclamação da República',
-            '2025-12-25': 'Natal'
-        };
+        // Calculate Easter date for a given year
+        function calculateEaster(year) {
+            const a = year % 19;
+            const b = Math.floor(year / 100);
+            const c = year % 100;
+            const d = Math.floor(b / 4);
+            const e = b % 4;
+            const f = Math.floor((b + 8) / 25);
+            const g = Math.floor((b - f + 1) / 3);
+            const h = (19 * a + b - d - g + 15) % 30;
+            const i = Math.floor(c / 4);
+            const k = c % 4;
+            const l = (32 + 2 * e + 2 * i - h - k) % 7;
+            const m = Math.floor((a + 11 * h + 22 * l) / 451);
+            const month = Math.floor((h + l - 7 * m + 114) / 31);
+            const day = ((h + l - 7 * m + 114) % 31) + 1;
+            
+            return new Date(year, month - 1, day);
+        }
+
+        // Generate holidays for multiple years
+        function generateHolidays(year) {
+            const holidays = {};
+            
+            // Calculate Easter and related dates
+            const easter = calculateEaster(year);
+            
+            // Good Friday (2 days before Easter)
+            const goodFriday = new Date(easter);
+            goodFriday.setDate(easter.getDate() - 2);
+            const goodFridayStr = `${goodFriday.getFullYear()}-${String(goodFriday.getMonth() + 1).padStart(2, '0')}-${String(goodFriday.getDate()).padStart(2, '0')}`;
+            holidays[goodFridayStr] = 'Sexta-feira Santa';
+            
+            // Corpus Christi (60 days after Easter)
+            const corpusChristi = new Date(easter);
+            corpusChristi.setDate(easter.getDate() + 60);
+            const corpusChristiStr = `${corpusChristi.getFullYear()}-${String(corpusChristi.getMonth() + 1).padStart(2, '0')}-${String(corpusChristi.getDate()).padStart(2, '0')}`;
+            holidays[corpusChristiStr] = 'Corpus Christi';
+            
+            // National holidays
+            holidays[`${year}-01-01`] = 'Confraternização Universal';
+            holidays[`${year}-04-21`] = 'Tiradentes';
+            holidays[`${year}-05-01`] = 'Dia do Trabalhador';
+            holidays[`${year}-09-07`] = 'Independência do Brasil';
+            holidays[`${year}-10-12`] = 'Nossa Senhora Aparecida';
+            holidays[`${year}-11-02`] = 'Finados';
+            holidays[`${year}-11-15`] = 'Proclamação da República';
+            holidays[`${year}-12-25`] = 'Natal';
+            
+            // Municipal holidays - Quatis/RJ
+            holidays[`${year}-10-07`] = 'Nossa Senhora do Rosário (Quatis)';
+            holidays[`${year}-11-25`] = 'Aniversário de Quatis';
+            
+            // Municipal holidays - Itatiaia/RJ
+            holidays[`${year}-03-19`] = 'São José (Itatiaia)';
+            holidays[`${year}-06-01`] = 'Aniversário de Itatiaia';
+            
+            // 13th salary dates
+            holidays[`${year}-11-30`] = '1ª Parcela do 13º Salário';
+            holidays[`${year}-12-20`] = '2ª Parcela do 13º Salário';
+            
+            return holidays;
+        }
+
+        // Get holidays for current year
+        function getHolidays() {
+            return generateHolidays(currentYear);
+        }
 
         // Fiscal events data
         const fiscalEvents = {
@@ -1464,6 +1671,18 @@
                     });
                 });
                 
+                // Check holidays for this date
+                const holidays = generateHolidays(checkDate.getFullYear());
+                if (holidays[dateStr]) {
+                    events.push({
+                        title: 'Feriado',
+                        description: holidays[dateStr],
+                        date: checkDate.toLocaleDateString('pt-BR'),
+                        sortDate: checkDate,
+                        type: 'holiday'
+                    });
+                }
+                
                 if (userNotes[dateStr]) {
                     events.push({
                         title: 'Observação',
@@ -1591,6 +1810,7 @@
         function createMonthCard(monthIndex) {
             const monthCard = document.createElement('div');
             monthCard.className = 'month-card rounded-2xl shadow-lg overflow-hidden';
+            monthCard.style.setProperty('--month-index', monthIndex);
             
             const daysInMonth = new Date(currentYear, monthIndex + 1, 0).getDate();
             const firstDay = new Date(currentYear, monthIndex, 1).getDay();
@@ -1622,7 +1842,8 @@
             for (let day = 1; day <= daysInMonth; day++) {
                 const dateStr = `${currentYear}-${String(monthIndex + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                 const isToday = isDateToday(currentYear, monthIndex, day);
-                const isHoliday = nationalHolidays[dateStr];
+                const holidays = getHolidays();
+                const isHoliday = holidays[dateStr];
                 const events = getEventsForDay(day, monthIndex + 1);
                 const hasNote = userNotes[dateStr];
                 const hasBirthday = userBirthdays[dateStr];
@@ -1631,36 +1852,72 @@
                 
                 if (isToday) {
                     dayClasses += ' today';
-                } else if (isHoliday) {
+                } else if (isHoliday && shouldShowEvent('event-holiday')) {
                     dayClasses += ' holiday-day';
                 } else {
                     dayClasses += ' hover:bg-opacity-80';
                     dayClasses += ` text-gray-700`;
                 }
                 
-                monthHTML += `
-                    <div class="${dayClasses}" onclick="openDayModal(${day}, ${monthIndex + 1}, '${dateStr}')" style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary);">
-                        <span class="text-xs">${day}</span>
-                        <div class="flex flex-wrap justify-center mt-1">
-                `;
+                // Verificar se este dia deve ser mostrado baseado nos filtros ativos
+                let shouldShowDay = activeFilters.includes('all');
                 
-                // Add event indicators
-                events.forEach(event => {
-                    if (shouldShowEvent(event.type)) {
-                        monthHTML += `<div class="event-indicator ${event.type}" title="${event.title}"></div>`;
+                if (!shouldShowDay) {
+                    // Verificar se tem eventos fiscais e filtro fiscal está ativo
+                    if (events.length > 0 && activeFilters.includes('fiscal')) {
+                        shouldShowDay = true;
                     }
-                });
-                
-                // Add user content indicators
-                if (hasNote && shouldShowEvent('notes')) {
-                    monthHTML += '<div class="event-indicator bg-yellow-500" title="Observação"></div>';
+                    // Verificar se é feriado e filtro feriados está ativo
+                    if (isHoliday && activeFilters.includes('holidays')) {
+                        shouldShowDay = true;
+                    }
+                    // Verificar se tem aniversário e filtro aniversários está ativo
+                    if (hasBirthday && activeFilters.includes('birthdays')) {
+                        shouldShowDay = true;
+                    }
+                    // Verificar se tem observação e filtro observações está ativo
+                    if (hasNote && activeFilters.includes('notes')) {
+                        shouldShowDay = true;
+                    }
                 }
+
+                // Se o dia não deve ser mostrado, criar um dia vazio mas ainda clicável para aniversários
+                if (!shouldShowDay) {
+                    monthHTML += `
+                        <div class="h-12 rounded-lg flex flex-col items-center justify-center text-sm opacity-30 cursor-pointer hover:opacity-60 transition-opacity duration-300" onclick="openDayModal(${day}, ${monthIndex + 1}, '${dateStr}')" style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-secondary);">
+                            ${hasNote ? '<div class="absolute top-1 left-1 w-2 h-2 bg-yellow-500 rounded-full shadow-sm opacity-50" title="Observação"></div>' : ''}
+                            ${hasBirthday ? '<div class="absolute top-1 right-1 w-2 h-2 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full shadow-sm" title="Aniversário"></div>' : ''}
+                            <span class="text-xs">${day}</span>
+                            <div class="absolute bottom-0 right-0 opacity-40 hover:opacity-80 transition-opacity">
+                                <i data-lucide="cake" class="w-3 h-3 text-orange-400" title="Adicionar aniversário"></i>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    monthHTML += `
+                        <div class="${dayClasses}" onclick="openDayModal(${day}, ${monthIndex + 1}, '${dateStr}')" style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary);">
+                            ${hasNote && shouldShowEvent('notes') ? '<div class="absolute top-1 left-1 w-2 h-2 bg-yellow-500 rounded-full shadow-sm" title="Observação"></div>' : ''}
+                            ${hasBirthday && shouldShowEvent('birthdays') ? '<div class="absolute top-1 right-1 w-2 h-2 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full shadow-sm" title="Aniversário"></div>' : ''}
+                            <span class="text-xs">${day}</span>
+                            <div class="flex flex-wrap justify-center mt-1">
+                    `;
                 
-                if (hasBirthday && shouldShowEvent('birthdays')) {
-                    monthHTML += '<div class="event-indicator event-birthday" title="Aniversário"></div>';
+                    // Add event indicators
+                    let eventIndex = 0;
+                    events.forEach(event => {
+                        if (shouldShowEvent(event.type)) {
+                            monthHTML += `<div class="event-indicator ${event.type}" style="--delay: ${eventIndex}" title="${event.title}"></div>`;
+                            eventIndex++;
+                        }
+                    });
+                    
+                    // Add holiday indicator if it's a holiday and should be shown
+                    if (isHoliday && shouldShowEvent('event-holiday')) {
+                        monthHTML += `<div class="event-indicator event-holiday" style="--delay: ${eventIndex}" title="Feriado: ${isHoliday}"></div>`;
+                    }
+                    
+                    monthHTML += '</div></div>';
                 }
-                
-                monthHTML += '</div></div>';
             }
             
             monthHTML += '</div></div>';
@@ -1670,13 +1927,28 @@
         }
 
         function shouldShowEvent(eventType) {
+            // Se "Todos" está ativo, mostra tudo
             if (activeFilters.includes('all')) return true;
             
-            if (eventType.includes('event-') && activeFilters.includes('fiscal')) return true;
-            if (eventType === 'event-holiday' && activeFilters.includes('holidays')) return true;
-            if (eventType === 'event-birthday' && activeFilters.includes('birthdays')) return true;
-            if (eventType === 'notes' && activeFilters.includes('notes')) return true;
-            if (eventType === 'birthdays' && activeFilters.includes('birthdays')) return true;
+            // Eventos fiscais (FGTS, INSS, IRRF, PIS, etc.)
+            if (eventType.startsWith('event-') && !eventType.includes('holiday') && !eventType.includes('birthday') && activeFilters.includes('fiscal')) {
+                return true;
+            }
+            
+            // Feriados
+            if (eventType === 'event-holiday' && activeFilters.includes('holidays')) {
+                return true;
+            }
+            
+            // Aniversários
+            if (eventType === 'birthdays' && activeFilters.includes('birthdays')) {
+                return true;
+            }
+            
+            // Observações/Notas
+            if (eventType === 'notes' && activeFilters.includes('notes')) {
+                return true;
+            }
             
             return false;
         }
@@ -1699,16 +1971,6 @@
                 }
             });
             
-            // Check holidays
-            const dateStr = `${currentYear}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-            if (nationalHolidays[dateStr]) {
-                events.push({
-                    title: 'Feriado',
-                    description: nationalHolidays[dateStr],
-                    type: 'event-holiday'
-                });
-            }
-            
             return events;
         }
 
@@ -1716,13 +1978,15 @@
             const events = getEventsForDay(day, month);
             const hasNote = userNotes[dateStr];
             const hasBirthday = userBirthdays[dateStr];
-            const isHoliday = nationalHolidays[dateStr];
+            const holidays = getHolidays();
+            const isHoliday = holidays[dateStr];
             
-            if (events.length === 0 && !hasNote && !hasBirthday && !isHoliday) {
-                // Open notes modal for empty days
-                openNotesModal(dateStr);
-                return;
-            }
+            // Always show the modal with options to add birthday/notes
+            // if (events.length === 0 && !hasNote && !hasBirthday && !isHoliday) {
+            //     // Open notes modal for empty days
+            //     openNotesModal(dateStr);
+            //     return;
+            // }
             
             const modal = document.getElementById('eventModal');
             const title = document.getElementById('modalTitle');
@@ -1796,13 +2060,30 @@
                 `;
             }
             
-            // Add action buttons
+            // Add action buttons - always show both options
             modalHTML += `
-                <div class="mt-6 flex space-x-2">
-                    ${!hasNote ? `<button onclick="openNotesModal('${dateStr}')" class="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-300">📝 Adicionar Observação</button>` : ''}
-                    ${!hasBirthday ? `<button onclick="openBirthdayModal('${dateStr}')" class="flex-1 bg-orange-500 hover:bg-orange-600 text-white px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-300">🎂 Adicionar Aniversário</button>` : ''}
+                <div class="mt-6 space-y-2">
+                    <div class="flex space-x-2">
+                        <button onclick="openNotesModal('${dateStr}')" class="flex-1 ${hasNote ? 'bg-yellow-600 hover:bg-yellow-700' : 'bg-yellow-500 hover:bg-yellow-600'} text-white px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-300">
+                            📝 ${hasNote ? 'Editar Observação' : 'Adicionar Observação'}
+                        </button>
+                        <button onclick="openBirthdayModal('${dateStr}')" class="flex-1 ${hasBirthday ? 'bg-orange-600 hover:bg-orange-700' : 'bg-orange-500 hover:bg-orange-600'} text-white px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-300">
+                            🎂 ${hasBirthday ? 'Editar Aniversário' : 'Adicionar Aniversário'}
+                        </button>
+                    </div>
                 </div>
             `;
+            
+            // If no events at all, show a helpful message
+            if (events.length === 0 && !hasNote && !hasBirthday && !isHoliday) {
+                modalHTML = `
+                    <div class="text-center py-6">
+                        <div class="text-6xl mb-4">📅</div>
+                        <h4 class="text-lg font-semibold mb-2" style="color: var(--text-primary);">Nenhum evento hoje</h4>
+                        <p class="text-sm mb-6" style="color: var(--text-secondary);">Que tal adicionar uma observação ou aniversário?</p>
+                    </div>
+                ` + modalHTML;
+            }
             
             content.innerHTML = modalHTML;
             modal.classList.remove('hidden');
@@ -1974,6 +2255,176 @@
             }
         }
 
+        // Daily reminder system
+        function checkDailyReminders() {
+            if (!firebaseUser) return;
+            
+            const today = new Date();
+            const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+            
+            const todayEvents = [];
+            
+            // Check fiscal events
+            const fiscalEventsToday = getEventsForDay(today.getDate(), today.getMonth() + 1);
+            fiscalEventsToday.forEach(event => {
+                todayEvents.push({
+                    type: 'fiscal',
+                    title: event.title,
+                    description: event.description,
+                    icon: '📋'
+                });
+            });
+            
+            // Check holidays
+            const holidays = generateHolidays(today.getFullYear());
+            if (holidays[todayStr]) {
+                todayEvents.push({
+                    type: 'holiday',
+                    title: 'Feriado',
+                    description: holidays[todayStr],
+                    icon: '🎉'
+                });
+            }
+            
+            // Check user notes
+            if (userNotes[todayStr]) {
+                todayEvents.push({
+                    type: 'note',
+                    title: 'Observação',
+                    description: userNotes[todayStr],
+                    icon: '📝'
+                });
+            }
+            
+            // Check birthdays
+            if (userBirthdays[todayStr]) {
+                todayEvents.push({
+                    type: 'birthday',
+                    title: 'Aniversário',
+                    description: userBirthdays[todayStr],
+                    icon: '🎂'
+                });
+            }
+            
+            // Show reminder if there are events today
+            if (todayEvents.length > 0) {
+                showDailyReminder(todayEvents);
+            }
+        }
+
+        function showDailyReminder(events) {
+            // Check if reminder was already shown today
+            const today = new Date().toDateString();
+            const lastReminderDate = localStorage.getItem('lastReminderDate');
+            
+            if (lastReminderDate === today) {
+                return; // Already shown today
+            }
+            
+            let reminderHTML = `
+                <div id="dailyReminder" class="fixed top-4 right-4 z-50 max-w-sm bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-6 transform translate-x-full transition-all duration-500 ease-out">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-bold text-gray-800 dark:text-white flex items-center">
+                            <i data-lucide="bell" class="w-5 h-5 mr-2 text-blue-500"></i>
+                            Lembretes de Hoje
+                        </h3>
+                        <button onclick="closeDailyReminder()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+                            <i data-lucide="x" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                    <div class="space-y-3">
+            `;
+            
+            events.forEach(event => {
+                let bgColor = 'bg-blue-50 dark:bg-blue-900/20';
+                let textColor = 'text-blue-800 dark:text-blue-200';
+                
+                if (event.type === 'holiday') {
+                    bgColor = 'bg-red-50 dark:bg-red-900/20';
+                    textColor = 'text-red-800 dark:text-red-200';
+                } else if (event.type === 'birthday') {
+                    bgColor = 'bg-orange-50 dark:bg-orange-900/20';
+                    textColor = 'text-orange-800 dark:text-orange-200';
+                } else if (event.type === 'note') {
+                    bgColor = 'bg-yellow-50 dark:bg-yellow-900/20';
+                    textColor = 'text-yellow-800 dark:text-yellow-200';
+                }
+                
+                reminderHTML += `
+                    <div class="${bgColor} p-3 rounded-lg">
+                        <div class="flex items-start space-x-2">
+                            <span class="text-lg">${event.icon}</span>
+                            <div class="flex-1">
+                                <h4 class="font-semibold ${textColor} text-sm">${event.title}</h4>
+                                <p class="${textColor} text-xs opacity-80">${event.description}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            reminderHTML += `
+                    </div>
+                    <div class="mt-4 flex space-x-2">
+                        <button onclick="closeDailyReminder()" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-300">
+                            Fechar
+                        </button>
+                        <button onclick="snoozeReminder()" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-300">
+                            Lembrar em 1h
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Add to body
+            document.body.insertAdjacentHTML('beforeend', reminderHTML);
+            
+            // Initialize icons
+            lucide.createIcons();
+            
+            // Animate in
+            setTimeout(() => {
+                const reminder = document.getElementById('dailyReminder');
+                if (reminder) {
+                    reminder.style.transform = 'translateX(0)';
+                }
+            }, 100);
+            
+            // Mark as shown today
+            localStorage.setItem('lastReminderDate', today);
+        }
+
+        function closeDailyReminder() {
+            const reminder = document.getElementById('dailyReminder');
+            if (reminder) {
+                reminder.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    reminder.remove();
+                }, 500);
+            }
+        }
+
+        function snoozeReminder() {
+            closeDailyReminder();
+            
+            // Set reminder to show again in 1 hour
+            setTimeout(() => {
+                // Remove the "shown today" flag so it can show again
+                localStorage.removeItem('lastReminderDate');
+                checkDailyReminders();
+            }, 60 * 60 * 1000); // 1 hour
+            
+            // Show snooze confirmation
+            const snoozeNotification = document.createElement('div');
+            snoozeNotification.className = 'fixed top-4 right-4 z-50 bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg';
+            snoozeNotification.textContent = '⏰ Lembrete adiado por 1 hora';
+            document.body.appendChild(snoozeNotification);
+            
+            setTimeout(() => {
+                snoozeNotification.remove();
+            }, 3000);
+        }
+
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
             console.log('🚀 Aplicação iniciada');
@@ -1993,8 +2444,14 @@
                 toggleTheme();
             }
             
+            // Check for daily reminders every minute
+            setInterval(checkDailyReminders, 60000);
+            
+            // Check reminders on load (with delay to ensure user is logged in)
+            setTimeout(checkDailyReminders, 3000);
+            
             console.log('✅ Inicialização completa');
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96c0f97e76499414',t:'MTc1NDY3NjY2OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96c11c3397ba9417',t:'MTc1NDY3ODA5MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
